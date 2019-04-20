@@ -97,3 +97,4 @@ d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\nunit.framework.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.Support.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyComplete
+d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache
