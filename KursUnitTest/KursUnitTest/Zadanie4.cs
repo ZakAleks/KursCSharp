@@ -56,11 +56,5 @@ namespace KursUnitTest
 
             LogOut();
         }
-
-        private void InitContactCreation()
-        {
-            driver.FindElement(By.CssSelector("input[name='submit']")).Click();
-        }
-
     }
 }

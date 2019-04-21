@@ -167,6 +167,9 @@ namespace KursUnitTest
             driver.FindElement(By.CssSelector("textarea[name='notes']")).SendKeys(adressEntry.SecondaryNotes);
         }
 
-
+        protected void InitContactCreation()
+        {
+            driver.FindElement(By.CssSelector("input[name='submit']")).Click();
+        }
     }
 }
