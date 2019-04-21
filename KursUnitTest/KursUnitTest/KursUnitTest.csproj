@@ -61,12 +61,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccauntData.cs" />
-    <Compile Include="AddressBookEntryData.cs" />
-    <Compile Include="GroupData.cs" />
-    <Compile Include="Zadanie4.cs" />
-    <Compile Include="Zadanie1.cs" />
-    <Compile Include="BaseTest.cs" />
+    <Compile Include="Model\AccauntData.cs" />
+    <Compile Include="Model\AddressBookEntryData.cs" />
+    <Compile Include="ApplicationManager.cs" />
+    <Compile Include="Model\GroupData.cs" />
+    <Compile Include="Helpers\BaseHelper.cs" />
+    <Compile Include="Helpers\ContactHelper.cs" />
+    <Compile Include="Helpers\GroupHelper.cs" />
+    <Compile Include="Helpers\LoginHelper.cs" />
+    <Compile Include="Helpers\NavigationHelper.cs" />
+    <Compile Include="Tests\Zadanie4.cs" />
+    <Compile Include="Tests\Zadanie1.cs" />
+    <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -118,7 +118,6 @@ C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\nunit.framework.pdb
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\nunit.framework.xml
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.xml
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.Support.xml
-C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CoreCompileInputs.cache
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyComplete
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.dll

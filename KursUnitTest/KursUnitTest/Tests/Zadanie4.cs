@@ -46,15 +46,9 @@ namespace KursUnitTest
             adressEntry.SecondaryTelephone = "+79333333333";
             adressEntry.SecondaryNotes = "Тут какаято информация о нем";
 
-
-            OpenHomePage(Url);
-            Login(new AccauntData("admin", "secret"));
-
-            FillAdressEntryForm(adressEntry);
-
-            InitContactCreation();
-
-            LogOut();
+            app.Navigator.GoToAddContactPage();
+            app.Contacts.Create(adressEntry);
+            app.Auth.LogOut();
         }
     }
 }
