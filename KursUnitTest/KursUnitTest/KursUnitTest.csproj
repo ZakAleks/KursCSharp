@@ -62,7 +62,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccauntData.cs" />
+    <Compile Include="AddressBookEntryData.cs" />
     <Compile Include="GroupData.cs" />
+    <Compile Include="Zadanie4.cs" />
     <Compile Include="Zadanie1.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
