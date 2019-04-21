@@ -29,6 +29,12 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public NavigationHelper GoToHomePage()
+        {
+            driver.FindElement(By.LinkText("home")).Click();
+            return this;
+        }
+
         public NavigationHelper OpenHomePage()
         {
             driver.Navigate().GoToUrl(url);

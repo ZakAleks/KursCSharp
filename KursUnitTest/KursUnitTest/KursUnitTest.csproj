@@ -70,8 +70,8 @@
     <Compile Include="Helpers\GroupHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
-    <Compile Include="Tests\Zadanie4.cs" />
-    <Compile Include="Tests\Zadanie1.cs" />
+    <Compile Include="Tests\ContactTests.cs" />
+    <Compile Include="Tests\GroupTests.cs" />
     <Compile Include="Tests\BaseTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

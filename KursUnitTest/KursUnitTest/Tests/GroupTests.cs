@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace KursUnitTest
 {
     [TestFixture]
-    internal class Zadanie1 : BaseTest
+    internal class GroupTests : BaseTest
     {
         [Test]
         public void GroupCreationTest()
@@ -39,5 +39,26 @@ namespace KursUnitTest
             app.Groups.Create(group);
             app.Auth.LogOut();
         }
+
+        [Test]
+        public void GroupModifyTest()
+        {
+
+            GroupData newGroupData = new GroupData();
+            newGroupData.GroupName = "111111";
+            newGroupData.GroupHeader = "2222";
+            newGroupData.GroupFooter = "3333";
+
+            app.Groups.Modify(1, newGroupData);
+            app.Auth.LogOut();
+        }
+
+        [Test]
+        public void GroupDeleteTest()
+        {
+            app.Groups.Delete(1);
+            app.Auth.LogOut();
+        }
+
     }
 }

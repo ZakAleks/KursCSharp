@@ -24,6 +24,30 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public GroupHelper Modify(int v, GroupData newGroupData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(v);
+            InitGroupModify();
+            FillGroupForm(newGroupData);
+            SubmitGroupModify();
+            return this;
+        }
+
+        public GroupHelper Delete(int v)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(v);
+            InitGroupDelete();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(int v)
+        {
+            driver.FindElement(By.XPath("(//form//input[@name='selected[]'])["+ v +"]")).Click();
+            return this;
+        }
+
         public GroupHelper ReturnsToGroupPage()
         {
             driver.FindElement(By.CssSelector("div[class='msgbox'] a[href$='group.php']")).Click();
@@ -33,6 +57,12 @@ namespace KursUnitTest.Helpers
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.CssSelector("input[name='submit']")).Click();
+            return this;
+        }
+
+        public GroupHelper SubmitGroupModify()
+        {
+            driver.FindElement(By.CssSelector("input[name='update']")).Click();
             return this;
         }
 
@@ -48,6 +78,18 @@ namespace KursUnitTest.Helpers
         public GroupHelper InitGroupCreation()
         {
             driver.FindElement(By.CssSelector("input[name='new']")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupModify()
+        {
+            driver.FindElement(By.CssSelector("input[name='edit']")).Click();
+            return this;
+        }
+
+        public GroupHelper InitGroupDelete()
+        {
+            driver.FindElement(By.CssSelector("input[name='delete']")).Click();
             return this;
         }
     }
