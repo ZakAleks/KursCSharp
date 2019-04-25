@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    internal class AddressBookEntryData
+    public class AddressBookEntryData
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace KursUnitTest
 {
     [TestFixture]
-    internal class ContactTests : BaseTest
+    public class ContactTests : BaseTest
     {
 
         [Test]

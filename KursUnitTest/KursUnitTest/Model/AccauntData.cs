@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    internal class AccauntData
+    public class AccauntData
     {
         public string Username { get; set; }
         public string Password { get; set; }

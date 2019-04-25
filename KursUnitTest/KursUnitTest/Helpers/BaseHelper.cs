@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
 {
-    internal class BaseHelper
+    public class BaseHelper
     {
         protected ApplicationManager manager;
         protected IWebDriver driver;
@@ -16,6 +16,15 @@ namespace KursUnitTest.Helpers
         {
             manager = Manager;
             driver = Manager.Driver;
+        }
+
+        public void Type(By locator, string text)
+        {
+            if (text != null)
+            { 
+            driver.FindElement(locator).Clear();
+            driver.FindElement(locator).SendKeys(text);
+            }
         }
     }
 }

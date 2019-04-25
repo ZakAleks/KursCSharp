@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    internal class GroupData
+    public class GroupData
     {
         public string GroupName { get; set; }
         public string GroupHeader { get; set; }

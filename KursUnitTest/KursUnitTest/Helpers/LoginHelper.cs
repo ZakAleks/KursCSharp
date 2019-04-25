@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
 {
-    internal class LoginHelper : BaseHelper
+    public class LoginHelper : BaseHelper
     {
 
         public LoginHelper(ApplicationManager Manager) : base(Manager)
@@ -15,10 +15,10 @@ namespace KursUnitTest.Helpers
         }
         public void Login(AccauntData accaunt)
         {
-            driver.FindElement(By.CssSelector("input[name='user']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='user']")).SendKeys(accaunt.Username);
-            driver.FindElement(By.CssSelector("input[name='pass']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='pass']")).SendKeys(accaunt.Password);
+
+            Type(By.CssSelector("input[name='user']"), accaunt.Username);
+            Type(By.CssSelector("input[name='pass']"), accaunt.Password);
+
             driver.FindElement(By.CssSelector("input[value='Login']")).Click();
         }
 

@@ -9,11 +9,12 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
 using KursUnitTest.Helpers;
 
+
 namespace KursUnitTest
 {
 
     //[TestFixture]
-    internal class BaseTest
+    public class BaseTest
     {
         protected ApplicationManager app;
         /// <summary>
@@ -22,9 +23,8 @@ namespace KursUnitTest
         [SetUp]
         public void SetUp()
         {
-            app = new ApplicationManager();
-            app.Navigator.OpenHomePage();
-            app.Auth.Login(new AccauntData("admin", "secret"));
+            app = TestSuiteFixture.app;
+
         }
 
         /// <summary>
@@ -41,7 +41,6 @@ namespace KursUnitTest
         [TearDown]
         public void TearDown()
         {
-            app.DeInit();
         }
 
         /// <summary>

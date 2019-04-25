@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
 {
-    internal class NavigationHelper : BaseHelper
+    public class NavigationHelper : BaseHelper
     {
         private string url;
 

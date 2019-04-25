@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
 {
-    internal class ContactHelper : BaseHelper
+    public class ContactHelper : BaseHelper
     {
 
         public ContactHelper(ApplicationManager Manager) :base(Manager)
@@ -62,36 +62,21 @@ namespace KursUnitTest.Helpers
 
         public ContactHelper FillAdressEntryForm(AddressBookEntryData contactData)
         {
-            driver.FindElement(By.CssSelector("input[name='firstname']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='firstname']")).SendKeys(contactData.FirstName);
-            driver.FindElement(By.CssSelector("input[name='middlename']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='middlename']")).SendKeys(contactData.MiddleName);
-            driver.FindElement(By.CssSelector("input[name='lastname']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='lastname']")).SendKeys(contactData.LastName);
-            driver.FindElement(By.CssSelector("input[name='nickname']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='nickname']")).SendKeys(contactData.Nickname);
-            driver.FindElement(By.CssSelector("input[name='title']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='title']")).SendKeys(contactData.Title);
-            driver.FindElement(By.CssSelector("input[name='company']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='company']")).SendKeys(contactData.Company);
-            driver.FindElement(By.CssSelector("textarea[name='address']")).Clear();
-            driver.FindElement(By.CssSelector("textarea[name='address']")).SendKeys(contactData.Address);
-            driver.FindElement(By.CssSelector("input[name='home']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='home']")).SendKeys(contactData.TelephoneHome);
-            driver.FindElement(By.CssSelector("input[name='mobile']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='mobile']")).SendKeys(contactData.TelephoneMobile);
-            driver.FindElement(By.CssSelector("input[name='work']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='work']")).SendKeys(contactData.TelephoneWork);
-            driver.FindElement(By.CssSelector("input[name='fax']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='fax']")).SendKeys(contactData.TelephoneFax);
-            driver.FindElement(By.CssSelector("input[name='email']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='email']")).SendKeys(contactData.Email);
-            driver.FindElement(By.CssSelector("input[name='email2']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='email2']")).SendKeys(contactData.Email2);
-            driver.FindElement(By.CssSelector("input[name='email3']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='email3']")).SendKeys(contactData.Email3);
-            driver.FindElement(By.CssSelector("input[name='homepage']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='homepage']")).SendKeys(contactData.Homepage);
+            Type(By.CssSelector("input[name='firstname']"), contactData.FirstName);
+            Type(By.CssSelector("input[name='middlename']"), contactData.MiddleName);
+            Type(By.CssSelector("input[name='lastname']"), contactData.LastName);
+            Type(By.CssSelector("input[name='nickname']"), contactData.Nickname);
+            Type(By.CssSelector("input[name='title']"), contactData.Title);
+            Type(By.CssSelector("input[name='company']"), contactData.Company);
+            Type(By.CssSelector("textarea[name='address']"), contactData.Address);
+            Type(By.CssSelector("input[name='home']"), contactData.TelephoneHome);
+            Type(By.CssSelector("input[name='mobile']"), contactData.TelephoneMobile);
+            Type(By.CssSelector("input[name='work']"), contactData.TelephoneWork);
+            Type(By.CssSelector("input[name='fax']"), contactData.TelephoneFax);
+            Type(By.CssSelector("input[name='email']"), contactData.Email);
+            Type(By.CssSelector("input[name='email2']"), contactData.Email2);
+            Type(By.CssSelector("input[name='email3']"), contactData.Email3);
+            Type(By.CssSelector("input[name='homepage']"), contactData.Homepage);
 
             var bday = driver.FindElement(By.CssSelector("select[name='bday']"));
             var selectElement = new SelectElement(bday);
@@ -101,8 +86,7 @@ namespace KursUnitTest.Helpers
             selectElement = new SelectElement(bmonth);
             selectElement.SelectByValue(contactData.BirthdayMonth);
 
-            driver.FindElement(By.CssSelector("input[name='byear']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='byear']")).SendKeys(contactData.BirthdayYear.ToString());
+            Type(By.CssSelector("input[name='byear']"), contactData.BirthdayYear.ToString());
 
             var aday = driver.FindElement(By.CssSelector("select[name='aday']"));
             selectElement = new SelectElement(aday);
@@ -112,14 +96,11 @@ namespace KursUnitTest.Helpers
             selectElement = new SelectElement(amonth);
             selectElement.SelectByValue(contactData.AnniversaryMonth);
 
-            driver.FindElement(By.CssSelector("input[name='ayear']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='ayear']")).SendKeys(contactData.AnniversaryYear.ToString());
-            driver.FindElement(By.CssSelector("textarea[name='address2']")).Clear();
-            driver.FindElement(By.CssSelector("textarea[name='address2']")).SendKeys(contactData.SecondaryAddress);
-            driver.FindElement(By.CssSelector("input[name='phone2']")).Clear();
-            driver.FindElement(By.CssSelector("input[name='phone2']")).SendKeys(contactData.SecondaryTelephone);
-            driver.FindElement(By.CssSelector("textarea[name='notes']")).Clear();
-            driver.FindElement(By.CssSelector("textarea[name='notes']")).SendKeys(contactData.SecondaryNotes);
+            Type(By.CssSelector("input[name='ayear']"), contactData.AnniversaryYear.ToString());
+            Type(By.CssSelector("textarea[name='address2']"), contactData.SecondaryAddress);
+            Type(By.CssSelector("input[name='phone2']"), contactData.SecondaryTelephone);
+            Type(By.CssSelector("textarea[name='notes']"), contactData.SecondaryNotes);
+
             return this;
         }
 

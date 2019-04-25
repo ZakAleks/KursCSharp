@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
 {
-    internal class GroupHelper : BaseHelper
+    public class GroupHelper : BaseHelper
     {
 
         public GroupHelper(ApplicationManager Manager) : base(Manager)
@@ -68,9 +68,10 @@ namespace KursUnitTest.Helpers
 
         public GroupHelper FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.CssSelector("input[name='group_name']")).SendKeys(group.GroupName);
-            driver.FindElement(By.CssSelector("textarea[name='group_header']")).SendKeys(group.GroupHeader);
-            driver.FindElement(By.CssSelector("textarea[name='group_footer']")).SendKeys(group.GroupFooter);
+            Type(By.CssSelector("input[name='group_name']"), group.GroupName);
+            Type(By.CssSelector("textarea[name='group_header']"), group.GroupHeader);
+            Type(By.CssSelector("textarea[name='group_footer']"), group.GroupFooter);
+
             return this;
 
         }

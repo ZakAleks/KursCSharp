@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    internal class ApplicationManager
+    public class ApplicationManager
     {
 
         protected IWebDriver driver;
