@@ -26,5 +26,19 @@ namespace KursUnitTest.Helpers
             driver.FindElement(locator).SendKeys(text);
             }
         }
+
+        public bool IsElementPresent(By locator)
+        {
+            try
+            {
+                driver.FindElement(locator);
+                return true;
+            }
+            catch(NoSuchElementException)
+            {
+                return false;
+            }
+        }
+
     }
 }

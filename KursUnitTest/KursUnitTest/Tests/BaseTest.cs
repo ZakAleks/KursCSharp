@@ -21,10 +21,9 @@ namespace KursUnitTest
         /// функция выполняется перед каждым тестом
         /// </summary>
         [SetUp]
-        public void SetUp()
+        public void SetUpApplicationManager()
         {
-            app = TestSuiteFixture.app;
-
+            app = ApplicationManager.GetInstance();
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KursUnitTest
@@ -20,19 +21,36 @@ namespace KursUnitTest
         protected NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
+        private static ThreadLocal<ApplicationManager> app = new ThreadLocal<ApplicationManager>();
 
-        public ApplicationManager()
+        private ApplicationManager()
         {
             url = "http://localhost/addressbook/";
             ChromeOptions options = new ChromeOptions();
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
 
             loginHelper = new LoginHelper(this);
             navigationHelper = new NavigationHelper(this, url);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
+        }
+
+        ~ApplicationManager()
+        {
+            driver.Quit();
+        }
+
+        public static ApplicationManager GetInstance()
+        {
+            if (!app.IsValueCreated)
+            {
+                ApplicationManager newInstance = new ApplicationManager();
+                newInstance.Navigator.OpenHomePage();
+                app.Value = newInstance;
+            }
+            return app.Value;
         }
 
         public IWebDriver Driver
@@ -41,12 +59,6 @@ namespace KursUnitTest
             {
                 return driver;
             }
-        }
-
-
-        public void DeInit()
-        {
-            driver.Quit();
         }
 
         public LoginHelper Auth

@@ -19,19 +19,42 @@ namespace KursUnitTest.Helpers
 
         public NavigationHelper GoToAddContactPage()
         {
-            driver.FindElement(By.CssSelector("a[href$='edit.php']")).Click();
+            if (driver.Url == url + "edit.php" && IsElementPresent(By.CssSelector("[name='submit']")))
+            {
+                return this;
+            }
+            else
+            {
+                driver.FindElement(By.CssSelector("a[href$='edit.php']")).Click();
+            }
+
             return this;
         }
 
         public NavigationHelper GoToGroupsPage()
         {
-            driver.FindElement(By.CssSelector("a[href$='group.php']")).Click();
+            if (driver.Url == url + "group.php" && IsElementPresent(By.CssSelector("[name='new']")))
+            {
+                return this;
+            }
+            else
+            {
+                driver.FindElement(By.CssSelector("a[href$='group.php']")).Click();
+            }
             return this;
         }
 
         public NavigationHelper GoToHomePage()
         {
-            driver.FindElement(By.LinkText("home")).Click();
+            if (driver.Url == url && IsElementPresent(By.CssSelector("[name='searchstring']")))
+            {
+                return this;
+            }
+            else
+            {
+                driver.FindElement(By.LinkText("home")).Click();
+            }
+            
             return this;
         }
 

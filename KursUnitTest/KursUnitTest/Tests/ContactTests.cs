@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace KursUnitTest
 {
     [TestFixture]
-    public class ContactTests : BaseTest
+    public class ContactTests : AuthBaseTest
     {
 
         [Test]
@@ -47,7 +47,6 @@ namespace KursUnitTest
             contactData.SecondaryNotes = "Тут какаято информация о нем";
 
             app.Contacts.Create(contactData);
-            app.Auth.LogOut();
         }
 
         [Test]
@@ -81,7 +80,6 @@ namespace KursUnitTest
             newContactData.SecondaryNotes = "-";
 
             app.Contacts.Modify(1, newContactData);
-            app.Auth.LogOut();
         }
 
         [Test]
@@ -89,7 +87,6 @@ namespace KursUnitTest
         {
             app.Navigator.GoToHomePage();
             app.Contacts.DeletFirstMetod(1);
-            app.Auth.LogOut();
         }
 
         [Test]
@@ -97,7 +94,6 @@ namespace KursUnitTest
         {
             app.Navigator.GoToHomePage();
             app.Contacts.DeletSecondMetod(1);
-            app.Auth.LogOut();
         }
     }
 }
