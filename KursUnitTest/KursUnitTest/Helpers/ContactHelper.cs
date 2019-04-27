@@ -60,7 +60,35 @@ namespace KursUnitTest.Helpers
             SelectContact(v);
             FillAdressEntryForm(newContactData);
             InitContactModify();
+            ReturnsToHomePage();
             return this;
+        }
+
+        public List<AddressBookEntryData> GetContactsList()
+        {
+
+            List<AddressBookEntryData> contactss = new List<AddressBookEntryData>();
+            manager.Navigator.GoToHomePage();
+            var trEls = driver.FindElements(By.CssSelector("tr[name='entry']"));
+
+            foreach (var el in trEls)
+            {
+                AddressBookEntryData contactData = new AddressBookEntryData();
+
+                GetContactData(el, contactData);
+
+                contactss.Add(contactData);
+            }
+
+            return contactss;
+
+        }
+
+        public void GetContactData(IWebElement el, AddressBookEntryData contacts)
+        {
+            contacts.FirstName = el.FindElement(By.XPath("./td[3]")).Text;
+            contacts.LastName = el.FindElement(By.XPath("./td[2]")).Text;
+
         }
 
         public ContactHelper DeletFirstMetod(int v)

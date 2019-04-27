@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    public class GroupData
+    public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
         public string GroupName { get; set; }
         public string GroupHeader { get; set; }
@@ -21,6 +21,40 @@ namespace KursUnitTest
             GroupName = groupName;
             GroupHeader = groupName;
             GroupFooter = groupFooter;
+        }
+
+        public bool Equals(GroupData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GroupName == other.GroupName && GroupHeader == other.GroupHeader && GroupFooter == other.GroupFooter;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return (GroupName + GroupHeader + GroupFooter).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Name=" + GroupName;
+        }
+
+        public int CompareTo(GroupData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return GroupName.CompareTo(other.GroupName);
         }
     }
 }

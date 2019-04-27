@@ -46,7 +46,16 @@ namespace KursUnitTest
             contactData.SecondaryTelephone = "+79333333333";
             contactData.SecondaryNotes = "Тут какаято информация о нем";
 
+            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+
             app.Contacts.Create(contactData);
+
+            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+
+            oldContacts.Add(contactData);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
         [Test]
@@ -79,21 +88,48 @@ namespace KursUnitTest
             newContactData.SecondaryTelephone = "-";
             newContactData.SecondaryNotes = "-";
 
+            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+
             app.Contacts.Modify(1, newContactData);
+
+            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+            oldContacts[0].FirstName = newContactData.FirstName;
+            oldContacts[0].LastName = newContactData.LastName;
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
         [Test]
         public void ContactDeletFirstMetodTest()
         {
             app.Navigator.GoToHomePage();
+
+            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+
             app.Contacts.DeletFirstMetod(1);
+
+            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+
+            oldContacts.RemoveAt(0);
+
+            Assert.AreEqual(oldContacts, newContacts);
         }
 
         [Test]
         public void ContactDeletSecondMetodTest()
         {
             app.Navigator.GoToHomePage();
+
+            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+
             app.Contacts.DeletSecondMetod(1);
+
+            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+
+            oldContacts.RemoveAt(0);
+
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

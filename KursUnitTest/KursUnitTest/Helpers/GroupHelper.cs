@@ -43,6 +43,41 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public List<GroupData> GetGroupsList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.Navigator.GoToGroupsPage();
+            var chkEls = driver.FindElements(By.CssSelector("span[class='group'] input"));
+            List<string> valueGroup = new List<string>();
+            foreach (var el in chkEls)
+            {
+                var val = el.GetAttribute("value");
+                valueGroup.Add(val);
+            }
+
+            foreach (var valid in valueGroup)
+            {
+                GroupData groupData = new GroupData();
+                driver.FindElement(By.CssSelector("span[class='group'] input[value='" + valid + "']")).Click();
+                driver.FindElement(By.CssSelector("input[name='edit']")).Click();
+
+                GetGroupData(groupData);
+                manager.Navigator.GoToGroupsPage();
+
+                groups.Add(groupData);
+            }
+
+
+            return groups;
+        }
+
+        public void GetGroupData(GroupData groupData)
+        {
+            groupData.GroupName = driver.FindElement(By.CssSelector("input[name='group_name']")).GetAttribute("value");
+            groupData.GroupHeader = driver.FindElement(By.CssSelector("textarea[name='group_header']")).Text;
+            groupData.GroupFooter = driver.FindElement(By.CssSelector("textarea[name='group_footer']")).Text;
+        }
+
         public GroupHelper Delete(int v)
         {
             manager.Navigator.GoToGroupsPage();

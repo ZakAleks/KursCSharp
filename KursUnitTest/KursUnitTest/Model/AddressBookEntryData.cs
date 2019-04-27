@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
-    public class AddressBookEntryData
+    public class AddressBookEntryData : IEquatable<AddressBookEntryData>, IComparable<AddressBookEntryData>
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
@@ -38,6 +38,40 @@ namespace KursUnitTest
 
         public AddressBookEntryData()
         {
+        }
+
+        public bool Equals(AddressBookEntryData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (Object.ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return FirstName == other.FirstName && LastName == other.LastName;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return (FirstName + LastName).GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return "Name=" + FirstName;
+        }
+
+        public int CompareTo(AddressBookEntryData other)
+        {
+            if (Object.ReferenceEquals(other, null))
+            {
+                return 1;
+            }
+            return FirstName.CompareTo(other.FirstName);
         }
 
     }

@@ -122,3 +122,4 @@ c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CoreC
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyComplete
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.dll
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.pdb
+C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache

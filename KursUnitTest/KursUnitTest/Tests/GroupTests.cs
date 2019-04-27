@@ -23,7 +23,34 @@ namespace KursUnitTest
             group.GroupHeader = "Group Header";
             group.GroupFooter = "Group Footer";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+        }
+
+        [Test]
+        public void BadNameGroupCreationTest()
+        {
+            GroupData group = new GroupData();
+            group.GroupName = "a'a";
+            group.GroupHeader = "zzzz";
+            group.GroupFooter = "zzzz";
+
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
+            app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
@@ -35,7 +62,15 @@ namespace KursUnitTest
             group.GroupHeader = "";
             group.GroupFooter = "";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
             app.Groups.Create(group);
+
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
@@ -47,13 +82,34 @@ namespace KursUnitTest
             newGroupData.GroupHeader = "2222";
             newGroupData.GroupFooter = "3333";
 
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
             app.Groups.Modify(1, newGroupData);
+
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+
+            oldGroups[0].GroupName = newGroupData.GroupName;
+            oldGroups[0].GroupHeader = newGroupData.GroupHeader;
+            oldGroups[0].GroupFooter = newGroupData.GroupFooter;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
 
         [Test]
         public void GroupDeleteTest()
         {
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
             app.Groups.Delete(1);
+
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+
+            oldGroups.RemoveAt(0);
+
+            Assert.AreEqual(oldGroups, newGroups);
+
         }
 
     }
