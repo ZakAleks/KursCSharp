@@ -50,6 +50,8 @@ namespace KursUnitTest
 
             app.Contacts.Create(contactData);
 
+            Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactsCounts());
+
             List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
 
             oldContacts.Add(contactData);
@@ -90,7 +92,11 @@ namespace KursUnitTest
 
             List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
 
+            var oldData = oldContacts[0];
+
             app.Contacts.Modify(1, newContactData);
+
+            Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactsCounts());
 
             List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
             oldContacts[0].FirstName = newContactData.FirstName;
@@ -98,6 +104,15 @@ namespace KursUnitTest
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (var contact in newContacts)
+            {
+                if (contact.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newContactData.FirstName, contact.FirstName);
+                    Assert.AreEqual(newContactData.LastName, contact.LastName);
+                }
+            }
         }
 
         [Test]
@@ -109,11 +124,22 @@ namespace KursUnitTest
 
             app.Contacts.DeletFirstMetod(1);
 
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCounts());
+
             List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+
+            var toBeRemoved = oldContacts[0];
 
             oldContacts.RemoveAt(0);
 
             Assert.AreEqual(oldContacts, newContacts);
+
+
+            foreach (var contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
+
         }
 
         [Test]
@@ -125,11 +151,20 @@ namespace KursUnitTest
 
             app.Contacts.DeletSecondMetod(1);
 
+            Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCounts());
+
             List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+
+            var toBeRemoved = oldContacts[0];
 
             oldContacts.RemoveAt(0);
 
             Assert.AreEqual(oldContacts, newContacts);
+
+            foreach (var contact in newContacts)
+            {
+                Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
+            }
         }
     }
 }

@@ -12,6 +12,8 @@ namespace KursUnitTest
         public string GroupHeader { get; set; }
         public string GroupFooter { get; set; }
 
+        public string Id { get; set; }
+
         public GroupData()
         {
         }

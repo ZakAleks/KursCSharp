@@ -19,7 +19,7 @@ namespace KursUnitTest.Helpers
         {
             manager.Navigator.GoToAddContactPage();
             FillAdressEntryForm(contactData);
-            InitContactCreation();
+            SubminContactCreation();
             ReturnsToHomePage();
             return this;
         }
@@ -59,33 +59,43 @@ namespace KursUnitTest.Helpers
             }
             SelectContact(v);
             FillAdressEntryForm(newContactData);
-            InitContactModify();
+            SubmitContactModify();
             ReturnsToHomePage();
             return this;
         }
 
+        public int GetContactsCounts()
+        {
+            return driver.FindElements(By.CssSelector("tr[name='entry']")).Count();
+        }
+
+        private List<AddressBookEntryData> ContactCache = null;
+
         public List<AddressBookEntryData> GetContactsList()
         {
-
-            List<AddressBookEntryData> contactss = new List<AddressBookEntryData>();
-            manager.Navigator.GoToHomePage();
-            var trEls = driver.FindElements(By.CssSelector("tr[name='entry']"));
-
-            foreach (var el in trEls)
+            if (ContactCache == null)
             {
-                AddressBookEntryData contactData = new AddressBookEntryData();
+                ContactCache = new List<AddressBookEntryData>();
 
-                GetContactData(el, contactData);
+                manager.Navigator.GoToHomePage();
+                var trEls = driver.FindElements(By.CssSelector("tr[name='entry']"));
 
-                contactss.Add(contactData);
+                foreach (var el in trEls)
+                {
+                    AddressBookEntryData contactData = new AddressBookEntryData();
+
+                    GetContactData(el, contactData);
+
+                    ContactCache.Add(contactData);
+                }
+
             }
-
-            return contactss;
-
+            return new List<AddressBookEntryData>(ContactCache);
         }
 
         public void GetContactData(IWebElement el, AddressBookEntryData contacts)
         {
+            contacts.Id = el.FindElement(By.CssSelector("input[name='selected[]']")).GetAttribute("value");
             contacts.FirstName = el.FindElement(By.XPath("./td[3]")).Text;
             contacts.LastName = el.FindElement(By.XPath("./td[2]")).Text;
 
@@ -125,7 +135,7 @@ namespace KursUnitTest.Helpers
                 Create(contactData);
             }
             SelectContact(v);
-            InitContactDelete();
+            SubmitContactDelete();
             return this;
         }
 
@@ -163,7 +173,7 @@ namespace KursUnitTest.Helpers
                 Create(contactData);
             }
             SelectContactInMainPage(v);
-            InitContactDelete();
+            SubmitContactDelete();
             return this;
         }
 
@@ -229,19 +239,21 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
-        public ContactHelper InitContactCreation()
+        public ContactHelper SubminContactCreation()
         {
             driver.FindElement(By.CssSelector("input[name='submit']")).Click();
+            ContactCache = null;
             return this;
         }
 
-        public ContactHelper InitContactModify()
+        public ContactHelper SubmitContactModify()
         {
             driver.FindElement(By.CssSelector("input[name='update'][value='Update']")).Click();
+            ContactCache = null;
             return this;
         }
 
-        internal ContactHelper InitContactDelete()
+        internal ContactHelper SubmitContactDelete()
         {
             driver.FindElement(By.CssSelector("input[value='Delete']")).Click();
             try
@@ -250,6 +262,7 @@ namespace KursUnitTest.Helpers
             }
             catch
             { }
+            ContactCache = null;
             return this;
         }
     }

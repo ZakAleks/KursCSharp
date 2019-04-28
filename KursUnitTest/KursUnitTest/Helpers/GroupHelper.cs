@@ -43,32 +43,44 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        private List<GroupData> GroupCach = null;
+
         public List<GroupData> GetGroupsList()
         {
-            List<GroupData> groups = new List<GroupData>();
-            manager.Navigator.GoToGroupsPage();
-            var chkEls = driver.FindElements(By.CssSelector("span[class='group'] input"));
-            List<string> valueGroup = new List<string>();
-            foreach (var el in chkEls)
+            if (GroupCach==null)
             {
-                var val = el.GetAttribute("value");
-                valueGroup.Add(val);
-            }
+                GroupCach = new List<GroupData>();
 
-            foreach (var valid in valueGroup)
-            {
-                GroupData groupData = new GroupData();
-                driver.FindElement(By.CssSelector("span[class='group'] input[value='" + valid + "']")).Click();
-                driver.FindElement(By.CssSelector("input[name='edit']")).Click();
-
-                GetGroupData(groupData);
                 manager.Navigator.GoToGroupsPage();
 
-                groups.Add(groupData);
+                var chkEls = driver.FindElements(By.CssSelector("span[class='group'] input"));
+                List<string> valueGroup = new List<string>();
+                foreach (var el in chkEls)
+                {
+                    var val = el.GetAttribute("value");
+                    valueGroup.Add(val);
+                }
+
+                foreach (var valid in valueGroup)
+                {
+                    GroupData groupData = new GroupData() { Id = valid };
+                    driver.FindElement(By.CssSelector("span[class='group'] input[value='" + valid + "']")).Click();
+                    driver.FindElement(By.CssSelector("input[name='edit']")).Click();
+                    GetGroupData(groupData);
+                    manager.Navigator.GoToGroupsPage();
+
+                    GroupCach.Add(groupData);
+                }
+
             }
 
+            return new List<GroupData>(GroupCach);
+        }
 
-            return groups;
+        public int GetGroupsCounts()
+        {
+            
+            return driver.FindElements(By.CssSelector("span[class='group'] input")).Count;
         }
 
         public void GetGroupData(GroupData groupData)
@@ -110,12 +122,14 @@ namespace KursUnitTest.Helpers
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.CssSelector("input[name='submit']")).Click();
+            GroupCach = null;
             return this;
         }
 
         public GroupHelper SubmitGroupModify()
         {
             driver.FindElement(By.CssSelector("input[name='update']")).Click();
+            GroupCach = null;
             return this;
         }
 
@@ -144,6 +158,7 @@ namespace KursUnitTest.Helpers
         public GroupHelper InitGroupDelete()
         {
             driver.FindElement(By.CssSelector("input[name='delete']")).Click();
+            GroupCach = null;
             return this;
         }
     }

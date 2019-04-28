@@ -27,6 +27,8 @@ namespace KursUnitTest
 
             app.Groups.Create(group);
 
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCounts());
+
             List<GroupData> newGroups = app.Groups.GetGroupsList();
             oldGroups.Add(group);
             oldGroups.Sort();
@@ -45,6 +47,8 @@ namespace KursUnitTest
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
 
             app.Groups.Create(group);
+
+            Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCounts());
 
             List<GroupData> newGroups = app.Groups.GetGroupsList();
             oldGroups.Add(group);
@@ -66,6 +70,9 @@ namespace KursUnitTest
 
             app.Groups.Create(group);
 
+            Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupsCounts());
+
+
             List<GroupData> newGroups = app.Groups.GetGroupsList();
             oldGroups.Add(group);
             oldGroups.Sort();
@@ -84,7 +91,11 @@ namespace KursUnitTest
 
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
 
+            var oldData = oldGroups[0];
+
             app.Groups.Modify(1, newGroupData);
+
+            Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCounts());
 
             List<GroupData> newGroups = app.Groups.GetGroupsList();
 
@@ -95,6 +106,16 @@ namespace KursUnitTest
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
 
+            foreach (var group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreEqual(newGroupData.GroupName, group.GroupName);
+                    Assert.AreEqual(newGroupData.GroupHeader, group.GroupHeader);
+                    Assert.AreEqual(newGroupData.GroupFooter, group.GroupFooter);
+                }
+            }
+
         }
 
         [Test]
@@ -104,11 +125,20 @@ namespace KursUnitTest
 
             app.Groups.Delete(1);
 
+            Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupsCounts());
+
             List<GroupData> newGroups = app.Groups.GetGroupsList();
+
+            var toBeRemoved = oldGroups[0];
 
             oldGroups.RemoveAt(0);
 
             Assert.AreEqual(oldGroups, newGroups);
+
+            foreach (var group in newGroups)
+            {
+                Assert.AreNotEqual(group.Id, toBeRemoved.Id);
+            }
 
         }
 
