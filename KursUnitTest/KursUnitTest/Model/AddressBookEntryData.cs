@@ -8,7 +8,61 @@ namespace KursUnitTest
 {
     public class AddressBookEntryData : IEquatable<AddressBookEntryData>, IComparable<AddressBookEntryData>
     {
+        private string allPhones;
+        private string allEmails;
+
         public string Id { get; set; }
+
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(TelephoneHome) + CleanUp(TelephoneMobile) + CleanUp(TelephoneWork) + CleanUp(SecondaryTelephone)).Trim();
+                }
+
+            }
+            set
+            {
+                allPhones = value;
+            }
+        }
+
+        private string CleanUp(string text)
+        {
+            if (text == null || text == "")
+            {
+                return "";
+            }
+            text = text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")","") + "\r\n";
+
+            return text;
+        }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    return (Email + "\r\n" + Email2 + "\r\n"+ Email3).Trim();
+                }
+
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
 
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

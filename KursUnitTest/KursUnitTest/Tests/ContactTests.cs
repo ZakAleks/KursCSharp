@@ -166,5 +166,23 @@ namespace KursUnitTest
                 Assert.AreNotEqual(contact.Id, toBeRemoved.Id);
             }
         }
+
+        [Test]
+        public void ContactInformationTest()
+        {
+
+            AddressBookEntryData dataFromTable = app.Contacts.GetContactDataFromTable(0);
+
+            AddressBookEntryData dataFromEditForm = app.Contacts.GetContactDataFromEditForm(1);
+
+            Assert.AreEqual(dataFromTable, dataFromEditForm);
+
+            Assert.AreEqual(dataFromTable.Address, dataFromEditForm.Address);
+
+            Assert.AreEqual(dataFromTable.AllPhones, dataFromEditForm.AllPhones);
+
+            Assert.AreEqual(dataFromTable.AllEmails, dataFromEditForm.AllEmails);
+
+        }
     }
 }

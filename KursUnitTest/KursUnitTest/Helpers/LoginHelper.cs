@@ -30,7 +30,14 @@ namespace KursUnitTest.Helpers
 
         public bool IsLoggedIn(AccauntData accaunt)
         {
-            return IsLoggedIn() && driver.FindElement(By.CssSelector("[name='logout']")).FindElement(By.CssSelector("b")).Text == "("+ accaunt.Username + ")";
+            return IsLoggedIn() && GetLoggedUserMane() == accaunt.Username;
+        }
+
+        public string GetLoggedUserMane()
+        {
+            var logUser = driver.FindElement(By.CssSelector("[name='logout']")).FindElement(By.CssSelector("b")).Text;
+            
+            return logUser.Substring(1, logUser.Length - 2);
         }
 
         public bool IsLoggedIn()

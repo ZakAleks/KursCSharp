@@ -177,6 +177,50 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public AddressBookEntryData GetContactDataFromEditForm(int ind)
+        {
+
+            manager.Navigator.GoToHomePage();
+            SelectContact(ind);
+
+            AddressBookEntryData acc = new AddressBookEntryData();
+            acc.FirstName = driver.FindElement(By.CssSelector("input[name='firstname']")).GetAttribute("value");
+            acc.LastName = driver.FindElement(By.CssSelector("input[name='lastname']")).GetAttribute("value");
+            acc.Address = driver.FindElement(By.CssSelector("textarea[name='address']")).Text;
+
+            acc.TelephoneHome = driver.FindElement(By.CssSelector("input[name='home']")).GetAttribute("value");
+            acc.TelephoneMobile = driver.FindElement(By.CssSelector("input[name='mobile']")).GetAttribute("value");
+            acc.TelephoneWork = driver.FindElement(By.CssSelector("input[name='work']")).GetAttribute("value");
+            acc.SecondaryTelephone = driver.FindElement(By.CssSelector("input[name='phone2']")).GetAttribute("value");
+
+            acc.Email = driver.FindElement(By.CssSelector("input[name='email']")).GetAttribute("value");
+            acc.Email2 = driver.FindElement(By.CssSelector("input[name='email2']")).GetAttribute("value");
+            acc.Email3 = driver.FindElement(By.CssSelector("input[name='email3']")).GetAttribute("value");
+
+
+            return acc;
+        }
+
+        public AddressBookEntryData GetContactDataFromTable(int ind)
+        {
+
+            manager.Navigator.GoToHomePage();
+
+            AddressBookEntryData acc = new AddressBookEntryData();
+
+            IList<IWebElement> cells = driver.FindElements(By.CssSelector("tr[name='entry']"))[ind].FindElements(By.CssSelector("td"));
+
+            acc.FirstName = cells[2].Text;
+            acc.LastName = cells[1].Text;
+            acc.Address = cells[3].Text;
+
+            acc.AllPhones = cells[5].Text; ;
+
+            acc.AllEmails = cells[4].Text;
+
+            return acc;
+        }
+
         internal ContactHelper SelectContactInMainPage(int v)
         {
             driver.FindElement(By.XPath("(//table[@id='maintable']//tr//input[@name='selected[]'])[" + v + "]")).Click();
@@ -185,7 +229,7 @@ namespace KursUnitTest.Helpers
 
         public ContactHelper SelectContact(int v)
         {
-            driver.FindElement(By.XPath("(//table[@id='maintable']//tr//img[@title='Edit'])["+ v + "]")).Click();
+            driver.FindElement(By.XPath("(//table[@id='maintable']//tr//img[@title='Edit'])[" + v + "]")).Click();
             return this;
         }
 
