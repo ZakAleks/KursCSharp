@@ -27,15 +27,6 @@ namespace KursUnitTest.Helpers
         public GroupHelper Modify(int v, GroupData newGroupData)
         {
             manager.Navigator.GoToGroupsPage();
-            if (!IsElementPresent(By.CssSelector("span[class='group']")))
-            {
-                GroupData group = new GroupData();
-                group.GroupName = "";
-                group.GroupHeader = "";
-                group.GroupFooter = "";
-
-                Create(group);
-            }
             SelectGroup(v);
             InitGroupModify();
             FillGroupForm(newGroupData);
@@ -54,6 +45,7 @@ namespace KursUnitTest.Helpers
                 manager.Navigator.GoToGroupsPage();
 
                 var chkEls = driver.FindElements(By.CssSelector("span[class='group'] input"));
+
                 List<string> valueGroup = new List<string>();
                 foreach (var el in chkEls)
                 {
@@ -93,15 +85,6 @@ namespace KursUnitTest.Helpers
         public GroupHelper Delete(int v)
         {
             manager.Navigator.GoToGroupsPage();
-            if (!IsElementPresent(By.CssSelector("span[class='group']")))
-            {
-                GroupData group = new GroupData();
-                group.GroupName = "";
-                group.GroupHeader = "";
-                group.GroupFooter = "";
-
-                Create(group);
-            }
             SelectGroup(v);
             InitGroupDelete();
             return this;

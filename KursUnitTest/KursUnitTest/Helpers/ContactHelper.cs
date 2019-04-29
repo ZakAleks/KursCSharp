@@ -27,36 +27,6 @@ namespace KursUnitTest.Helpers
         public ContactHelper Modify(int v, AddressBookEntryData newContactData)
         {
             manager.Navigator.GoToHomePage();
-            if (!IsElementPresent(By.CssSelector("[name='selected[]']")))
-            {
-                AddressBookEntryData contactData = new AddressBookEntryData();
-                contactData.FirstName = "Ivan";
-                contactData.MiddleName = "Ivanov";
-                contactData.LastName = "Ivanovich";
-                contactData.Nickname = "IVAV";
-                contactData.Title = "Брат";
-                contactData.Company = "Безработный";
-                contactData.Address = "Москва, какаято улица";
-                contactData.TelephoneHome = "+79111111111";
-                contactData.TelephoneMobile = "+79777777777";
-                contactData.TelephoneWork = "+79222222222";
-                contactData.TelephoneFax = "22-22-22";
-                contactData.Email = "test@ivan.ru";
-                contactData.Email2 = "-";
-                contactData.Email3 = "-";
-                contactData.Homepage = "ivan.ru";
-                contactData.BirthdayDay = 14;
-                contactData.BirthdayMonth = "April";
-                contactData.BirthdayYear = 1999;
-                contactData.AnniversaryDay = 14;
-                contactData.AnniversaryMonth = "April";
-                contactData.AnniversaryYear = 2040;
-                contactData.SecondaryAddress = "Питер, какаято улица";
-                contactData.SecondaryTelephone = "+79333333333";
-                contactData.SecondaryNotes = "Тут какаято информация о нем";
-
-                Create(contactData);
-            }
             SelectContact(v);
             FillAdressEntryForm(newContactData);
             SubmitContactModify();
@@ -104,76 +74,20 @@ namespace KursUnitTest.Helpers
         public ContactHelper DeletFirstMetod(int v)
         {
             manager.Navigator.GoToHomePage();
-            if (!IsElementPresent(By.CssSelector("[name='selected[]']")))
-            {
-                AddressBookEntryData contactData = new AddressBookEntryData();
-                contactData.FirstName = "Ivan";
-                contactData.MiddleName = "Ivanov";
-                contactData.LastName = "Ivanovich";
-                contactData.Nickname = "IVAV";
-                contactData.Title = "Брат";
-                contactData.Company = "Безработный";
-                contactData.Address = "Москва, какаято улица";
-                contactData.TelephoneHome = "+79111111111";
-                contactData.TelephoneMobile = "+79777777777";
-                contactData.TelephoneWork = "+79222222222";
-                contactData.TelephoneFax = "22-22-22";
-                contactData.Email = "test@ivan.ru";
-                contactData.Email2 = "-";
-                contactData.Email3 = "-";
-                contactData.Homepage = "ivan.ru";
-                contactData.BirthdayDay = 14;
-                contactData.BirthdayMonth = "April";
-                contactData.BirthdayYear = 1999;
-                contactData.AnniversaryDay = 14;
-                contactData.AnniversaryMonth = "April";
-                contactData.AnniversaryYear = 2040;
-                contactData.SecondaryAddress = "Питер, какаято улица";
-                contactData.SecondaryTelephone = "+79333333333";
-                contactData.SecondaryNotes = "Тут какаято информация о нем";
 
-                Create(contactData);
-            }
             SelectContact(v);
             SubmitContactDelete();
+            ReturnsToHomePage();
             return this;
         }
 
         public ContactHelper DeletSecondMetod(int v)
         {
             manager.Navigator.GoToHomePage();
-            if (!IsElementPresent(By.CssSelector("[name='selected[]']")))
-            {
-                AddressBookEntryData contactData = new AddressBookEntryData();
-                contactData.FirstName = "Ivan";
-                contactData.MiddleName = "Ivanov";
-                contactData.LastName = "Ivanovich";
-                contactData.Nickname = "IVAV";
-                contactData.Title = "Брат";
-                contactData.Company = "Безработный";
-                contactData.Address = "Москва, какаято улица";
-                contactData.TelephoneHome = "+79111111111";
-                contactData.TelephoneMobile = "+79777777777";
-                contactData.TelephoneWork = "+79222222222";
-                contactData.TelephoneFax = "22-22-22";
-                contactData.Email = "test@ivan.ru";
-                contactData.Email2 = "-";
-                contactData.Email3 = "-";
-                contactData.Homepage = "ivan.ru";
-                contactData.BirthdayDay = 14;
-                contactData.BirthdayMonth = "April";
-                contactData.BirthdayYear = 1999;
-                contactData.AnniversaryDay = 14;
-                contactData.AnniversaryMonth = "April";
-                contactData.AnniversaryYear = 2040;
-                contactData.SecondaryAddress = "Питер, какаято улица";
-                contactData.SecondaryTelephone = "+79333333333";
-                contactData.SecondaryNotes = "Тут какаято информация о нем";
 
-                Create(contactData);
-            }
             SelectContactInMainPage(v);
             SubmitContactDelete();
+            ReturnsToHomePage();
             return this;
         }
 
@@ -235,7 +149,7 @@ namespace KursUnitTest.Helpers
 
         public ContactHelper ReturnsToHomePage()
         {
-            driver.FindElement(By.CssSelector("div[class='msgbox'] a[href$='index.php']")).Click();
+            driver.FindElement(By.LinkText("home")).Click();
             return this;
         }
 

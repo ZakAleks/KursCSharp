@@ -91,6 +91,17 @@ namespace KursUnitTest
 
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
 
+            if (oldGroups.Count == 0)
+            {
+                GroupData group = new GroupData();
+                group.GroupName = "";
+                group.GroupHeader = "";
+                group.GroupFooter = "";
+                app.Groups.Create(group);
+
+                oldGroups = app.Groups.GetGroupsList();
+            }
+
             var oldData = oldGroups[0];
 
             app.Groups.Modify(1, newGroupData);
@@ -121,7 +132,19 @@ namespace KursUnitTest
         [Test]
         public void GroupDeleteTest()
         {
+
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
+
+            if (oldGroups.Count==0)
+            {
+                GroupData group = new GroupData();
+                group.GroupName = "";
+                group.GroupHeader = "";
+                group.GroupFooter = "";
+                app.Groups.Create(group);
+
+                oldGroups = app.Groups.GetGroupsList();
+            }
 
             app.Groups.Delete(1);
 

@@ -94,6 +94,15 @@ namespace KursUnitTest
 
             var oldData = oldContacts[0];
 
+            if (oldContacts.Count == 0)
+            {
+                var contactData = AddressBookEntryData.GetTestContact();
+
+                app.Contacts.Create(contactData);
+
+                oldContacts = app.Contacts.GetContactsList();
+            }
+
             app.Contacts.Modify(1, newContactData);
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactsCounts());
@@ -122,6 +131,15 @@ namespace KursUnitTest
 
             List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
 
+            if (oldContacts.Count == 0)
+            {
+                var contactData = AddressBookEntryData.GetTestContact();
+
+                app.Contacts.Create(contactData);
+
+                oldContacts = app.Contacts.GetContactsList();
+            }
+
             app.Contacts.DeletFirstMetod(1);
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCounts());
@@ -148,6 +166,15 @@ namespace KursUnitTest
             app.Navigator.GoToHomePage();
 
             List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+
+            if (oldContacts.Count == 0)
+            {
+                var contactData = AddressBookEntryData.GetTestContact();
+
+                app.Contacts.Create(contactData);
+
+                oldContacts = app.Contacts.GetContactsList();
+            }
 
             app.Contacts.DeletSecondMetod(1);
 
