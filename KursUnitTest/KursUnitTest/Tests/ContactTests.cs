@@ -92,8 +92,6 @@ namespace KursUnitTest
 
             List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
 
-            var oldData = oldContacts[0];
-
             if (oldContacts.Count == 0)
             {
                 var contactData = AddressBookEntryData.GetTestContact();
@@ -102,6 +100,8 @@ namespace KursUnitTest
 
                 oldContacts = app.Contacts.GetContactsList();
             }
+
+            var oldData = oldContacts[0];
 
             app.Contacts.Modify(1, newContactData);
 

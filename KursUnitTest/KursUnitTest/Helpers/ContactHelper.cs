@@ -11,7 +11,7 @@ namespace KursUnitTest.Helpers
     public class ContactHelper : BaseHelper
     {
 
-        public ContactHelper(ApplicationManager Manager) :base(Manager)
+        public ContactHelper(ApplicationManager Manager) : base(Manager)
         {
         }
 
@@ -52,10 +52,13 @@ namespace KursUnitTest.Helpers
 
                 foreach (var el in trEls)
                 {
+
+                    var tds = el.FindElements(By.CssSelector("td"));
                     AddressBookEntryData contactData = new AddressBookEntryData();
 
-                    GetContactData(el, contactData);
-
+                    contactData.Id = tds[0].GetAttribute("value");
+                    contactData.FirstName = tds[2].Text;
+                    contactData.LastName = tds[1].Text;
                     ContactCache.Add(contactData);
                 }
 
@@ -63,31 +66,19 @@ namespace KursUnitTest.Helpers
             return new List<AddressBookEntryData>(ContactCache);
         }
 
-        public void GetContactData(IWebElement el, AddressBookEntryData contacts)
-        {
-            contacts.Id = el.FindElement(By.CssSelector("input[name='selected[]']")).GetAttribute("value");
-            contacts.FirstName = el.FindElement(By.XPath("./td[3]")).Text;
-            contacts.LastName = el.FindElement(By.XPath("./td[2]")).Text;
-
-        }
-
         public ContactHelper DeletFirstMetod(int v)
         {
             manager.Navigator.GoToHomePage();
-
             SelectContact(v);
             SubmitContactDelete();
-            ReturnsToHomePage();
             return this;
         }
 
         public ContactHelper DeletSecondMetod(int v)
         {
             manager.Navigator.GoToHomePage();
-
             SelectContactInMainPage(v);
             SubmitContactDelete();
-            ReturnsToHomePage();
             return this;
         }
 
@@ -128,7 +119,7 @@ namespace KursUnitTest.Helpers
             acc.LastName = cells[1].Text;
             acc.Address = cells[3].Text;
 
-            acc.AllPhones = cells[5].Text; ;
+            acc.AllPhones = cells[5].Text;
 
             acc.AllEmails = cells[4].Text;
 
@@ -149,7 +140,7 @@ namespace KursUnitTest.Helpers
 
         public ContactHelper ReturnsToHomePage()
         {
-            driver.FindElement(By.LinkText("home")).Click();
+            driver.FindElement(By.CssSelector("div[class='msgbox'] a[href$='index.php']")).Click();
             return this;
         }
 

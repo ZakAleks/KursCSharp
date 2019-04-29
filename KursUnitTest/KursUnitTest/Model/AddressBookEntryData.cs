@@ -124,10 +124,13 @@ namespace KursUnitTest
         public int CompareTo(AddressBookEntryData other)
         {
             if (Object.ReferenceEquals(other, null))
-            {
                 return 1;
-            }
-            return FirstName.CompareTo(other.FirstName);
+
+            var res = FirstName.CompareTo(other.FirstName);
+            if (res != 0)
+                return res;
+
+            return LastName.CompareTo(other.LastName);
         }
 
         public static AddressBookEntryData GetTestContact()

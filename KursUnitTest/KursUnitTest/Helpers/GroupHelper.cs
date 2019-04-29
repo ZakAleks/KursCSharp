@@ -31,6 +31,7 @@ namespace KursUnitTest.Helpers
             InitGroupModify();
             FillGroupForm(newGroupData);
             SubmitGroupModify();
+            ReturnsToGroupPage();
             return this;
         }
 
@@ -87,6 +88,7 @@ namespace KursUnitTest.Helpers
             manager.Navigator.GoToGroupsPage();
             SelectGroup(v);
             InitGroupDelete();
+            ReturnsToGroupPage();
             return this;
         }
 
