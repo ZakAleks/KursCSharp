@@ -56,7 +56,7 @@ namespace KursUnitTest.Helpers
                     var tds = el.FindElements(By.CssSelector("td"));
                     AddressBookEntryData contactData = new AddressBookEntryData();
 
-                    contactData.Id = tds[0].GetAttribute("value");
+                    contactData.Id = tds[0].FindElement(By.CssSelector("input")).GetAttribute("value");
                     contactData.FirstName = tds[2].Text;
                     contactData.LastName = tds[1].Text;
                     ContactCache.Add(contactData);
@@ -71,6 +71,7 @@ namespace KursUnitTest.Helpers
             manager.Navigator.GoToHomePage();
             SelectContact(v);
             SubmitContactDelete();
+            ReturnsToHomePage();
             return this;
         }
 
@@ -79,6 +80,7 @@ namespace KursUnitTest.Helpers
             manager.Navigator.GoToHomePage();
             SelectContactInMainPage(v);
             SubmitContactDelete();
+            ReturnsToHomePage();
             return this;
         }
 
@@ -140,7 +142,7 @@ namespace KursUnitTest.Helpers
 
         public ContactHelper ReturnsToHomePage()
         {
-            driver.FindElement(By.CssSelector("div[class='msgbox'] a[href$='index.php']")).Click();
+            driver.FindElement(By.LinkText("home")).Click();
             return this;
         }
 
