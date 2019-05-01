@@ -82,11 +82,11 @@ namespace KursUnitTest
 
         public int BirthdayDay { get; set; }
         public string BirthdayMonth { get; set; }
-        public int BirthdayYear { get; set; }
+        public string BirthdayYear { get; set; }
 
         public int AnniversaryDay { get; set; }
         public string AnniversaryMonth { get; set; }
-        public int AnniversaryYear { get; set; }
+        public string AnniversaryYear { get; set; }
 
         public string SecondaryAddress { get; set; }
         public string SecondaryTelephone { get; set; }
@@ -153,10 +153,10 @@ namespace KursUnitTest
             contactData.Homepage = "ivan.ru";
             contactData.BirthdayDay = 14;
             contactData.BirthdayMonth = "April";
-            contactData.BirthdayYear = 1999;
+            contactData.BirthdayYear = "1999";
             contactData.AnniversaryDay = 14;
             contactData.AnniversaryMonth = "April";
-            contactData.AnniversaryYear = 2040;
+            contactData.AnniversaryYear = "2040";
             contactData.SecondaryAddress = "Питер, какаято улица";
             contactData.SecondaryTelephone = "+79333333333";
             contactData.SecondaryNotes = "Тут какаято информация о нем";

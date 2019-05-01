@@ -38,10 +38,10 @@ namespace KursUnitTest
             contactData.Homepage = "ivan.ru";
             contactData.BirthdayDay = 14;
             contactData.BirthdayMonth = "April";
-            contactData.BirthdayYear = 1999;
+            contactData.BirthdayYear = "1999";
             contactData.AnniversaryDay = 14;
             contactData.AnniversaryMonth = "April";
-            contactData.AnniversaryYear = 2040;
+            contactData.AnniversaryYear = "2040";
             contactData.SecondaryAddress = "Питер, какаято улица";
             contactData.SecondaryTelephone = "+79333333333";
             contactData.SecondaryNotes = "Тут какаято информация о нем";
@@ -82,10 +82,10 @@ namespace KursUnitTest
             newContactData.Homepage = "petr.ru";
             newContactData.BirthdayDay = 20;
             newContactData.BirthdayMonth = "October";
-            newContactData.BirthdayYear = 1966;
+            newContactData.BirthdayYear = "1966";
             newContactData.AnniversaryDay = 20;
             newContactData.AnniversaryMonth = "october";
-            newContactData.AnniversaryYear = 2025;
+            newContactData.AnniversaryYear = "2025";
             newContactData.SecondaryAddress = "-";
             newContactData.SecondaryTelephone = "-";
             newContactData.SecondaryNotes = "-";
@@ -209,6 +209,16 @@ namespace KursUnitTest
             Assert.AreEqual(dataFromTable.AllPhones, dataFromEditForm.AllPhones);
 
             Assert.AreEqual(dataFromTable.AllEmails, dataFromEditForm.AllEmails);
+
+        }
+
+        [Test]
+        public void ContactDetailInformationTest()
+        {
+
+            AddressBookEntryData dataFromEditForm = app.Contacts.GetContactDataFromEditForm(1);
+
+            AddressBookEntryData dataFromTable = app.Contacts.GetContactDataFromTable(0);
 
         }
     }

@@ -93,18 +93,40 @@ namespace KursUnitTest.Helpers
 
             AddressBookEntryData acc = new AddressBookEntryData();
             acc.FirstName = driver.FindElement(By.CssSelector("input[name='firstname']")).GetAttribute("value");
+            acc.MiddleName = driver.FindElement(By.CssSelector("input[name='middlename']")).GetAttribute("value");
             acc.LastName = driver.FindElement(By.CssSelector("input[name='lastname']")).GetAttribute("value");
+
+            acc.Nickname = driver.FindElement(By.CssSelector("input[name='nickname']")).GetAttribute("value");
+
+            acc.Company = driver.FindElement(By.CssSelector("input[name='company']")).GetAttribute("value");
+
+            acc.Title = driver.FindElement(By.CssSelector("input[name='title']")).GetAttribute("value");
+
             acc.Address = driver.FindElement(By.CssSelector("textarea[name='address']")).Text;
 
             acc.TelephoneHome = driver.FindElement(By.CssSelector("input[name='home']")).GetAttribute("value");
             acc.TelephoneMobile = driver.FindElement(By.CssSelector("input[name='mobile']")).GetAttribute("value");
             acc.TelephoneWork = driver.FindElement(By.CssSelector("input[name='work']")).GetAttribute("value");
+            acc.TelephoneFax = driver.FindElement(By.CssSelector("input[name='fax']")).GetAttribute("value");
             acc.SecondaryTelephone = driver.FindElement(By.CssSelector("input[name='phone2']")).GetAttribute("value");
 
             acc.Email = driver.FindElement(By.CssSelector("input[name='email']")).GetAttribute("value");
             acc.Email2 = driver.FindElement(By.CssSelector("input[name='email2']")).GetAttribute("value");
             acc.Email3 = driver.FindElement(By.CssSelector("input[name='email3']")).GetAttribute("value");
 
+            acc.Homepage = driver.FindElement(By.CssSelector("input[name='homepage']")).GetAttribute("value");
+
+            acc.BirthdayDay = Int32.Parse(driver.FindElement(By.CssSelector("select[name='bday'] option[selected]")).Text);
+            acc.BirthdayMonth = driver.FindElement(By.CssSelector("select[name='bmonth'] option[selected]")).Text;
+
+            acc.BirthdayYear = driver.FindElement(By.CssSelector("input[name='byear']")).GetAttribute("value");
+
+            acc.AnniversaryDay = Int32.Parse(driver.FindElement(By.CssSelector("select[name='aday'] option[selected]")).Text);
+            acc.AnniversaryMonth = driver.FindElement(By.CssSelector("select[name='amonth'] option[selected]")).Text;
+            acc.AnniversaryYear = driver.FindElement(By.CssSelector("input[name='ayear']")).GetAttribute("value");
+
+            acc.SecondaryAddress = driver.FindElement(By.CssSelector("textarea[name='address2']")).Text;
+            acc.SecondaryNotes = driver.FindElement(By.CssSelector("textarea[name='notes']")).Text;
 
             return acc;
         }
