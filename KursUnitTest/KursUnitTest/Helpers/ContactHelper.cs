@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace KursUnitTest.Helpers
@@ -215,6 +216,16 @@ namespace KursUnitTest.Helpers
             { }
             ContactCache = null;
             return this;
+        }
+
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            var text = driver.FindElement(By.CssSelector("label")).Text;
+            var m = new Regex("\\d+").Match(text);
+
+            return Int32.Parse(m.Value);
         }
     }
 }

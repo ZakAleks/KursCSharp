@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace KursUnitTest
@@ -39,9 +40,8 @@ namespace KursUnitTest
             {
                 return "";
             }
-            text = text.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")","") + "\r\n";
 
-            return text;
+            return Regex.Replace(text, "[ -()]", "") + "\r\n";
         }
 
         public string AllEmails
