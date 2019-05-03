@@ -34,16 +34,6 @@ namespace KursUnitTest
             }
         }
 
-        private string CleanUp(string text)
-        {
-            if (text == null || text == "")
-            {
-                return "";
-            }
-
-            return Regex.Replace(text, "[ -()]", "") + "\r\n";
-        }
-
         public string AllEmails
         {
             get
@@ -54,7 +44,7 @@ namespace KursUnitTest
                 }
                 else
                 {
-                    return (Email + "\r\n" + Email2 + "\r\n"+ Email3).Trim();
+                    return (CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3)).Trim();
                 }
 
             }
@@ -62,6 +52,99 @@ namespace KursUnitTest
             {
                 allEmails = value;
             }
+        }
+
+        private static string GetFormatDate(string day, string month, string year)
+        {
+            if (day == "-")
+            {
+                day = "";
+            }
+            else
+            {
+                day += ". ";
+            }
+
+            if (month == "-")
+            {
+                month = "";
+            }
+            else
+            {
+                month += " ";
+            }
+            int iYear;
+            if (int.TryParse(year, out iYear))
+            {
+                if (iYear < DateTime.Now.Year + 150 && iYear > DateTime.Now.Year - 150)
+                {
+                    year += " (" + (DateTime.Now.Year - iYear) + ")";
+                }
+            }
+
+            return day + month + year;
+        }
+
+        public string FullBirthdayDate
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+
+                    return ("Birthday " + GetFormatDate(BirthdayDay, BirthdayMonth, BirthdayYear)).Trim();
+                }
+
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
+
+        public string FullAnniversaryDate
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+
+                    return ("Anniversary" + GetFormatDate(AnniversaryDay, AnniversaryMonth, AnniversaryYear)).Trim();
+                }
+
+            }
+            set
+            {
+                allEmails = value;
+            }
+        }
+
+        private string CleanUp(string text)
+        {
+            if (text == null || text == "")
+            {
+                return "";
+            }
+
+            return Regex.Replace(text, "[ -()]", "") + "\r\n";
+        }
+
+        private string CleanUpEmail(string text)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return string.Empty;
+            }
+
+            return text + Environment.NewLine;
         }
 
         public string FirstName { get; set; }
@@ -80,11 +163,11 @@ namespace KursUnitTest
         public string Email3 { get; set; }
         public string Homepage { get; set; }
 
-        public int BirthdayDay { get; set; }
+        public string BirthdayDay { get; set; }
         public string BirthdayMonth { get; set; }
         public string BirthdayYear { get; set; }
 
-        public int AnniversaryDay { get; set; }
+        public string AnniversaryDay { get; set; }
         public string AnniversaryMonth { get; set; }
         public string AnniversaryYear { get; set; }
 
@@ -151,10 +234,10 @@ namespace KursUnitTest
             contactData.Email2 = "-";
             contactData.Email3 = "-";
             contactData.Homepage = "ivan.ru";
-            contactData.BirthdayDay = 14;
+            contactData.BirthdayDay = "14";
             contactData.BirthdayMonth = "April";
             contactData.BirthdayYear = "1999";
-            contactData.AnniversaryDay = 14;
+            contactData.AnniversaryDay = "14";
             contactData.AnniversaryMonth = "April";
             contactData.AnniversaryYear = "2040";
             contactData.SecondaryAddress = "Питер, какаято улица";

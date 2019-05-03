@@ -116,12 +116,12 @@ namespace KursUnitTest.Helpers
 
             acc.Homepage = driver.FindElement(By.CssSelector("input[name='homepage']")).GetAttribute("value");
 
-            acc.BirthdayDay = Int32.Parse(driver.FindElement(By.CssSelector("select[name='bday'] option[selected]")).Text);
+            acc.BirthdayDay = driver.FindElement(By.CssSelector("select[name='bday'] option[selected]")).Text;
             acc.BirthdayMonth = driver.FindElement(By.CssSelector("select[name='bmonth'] option[selected]")).Text;
 
             acc.BirthdayYear = driver.FindElement(By.CssSelector("input[name='byear']")).GetAttribute("value");
 
-            acc.AnniversaryDay = Int32.Parse(driver.FindElement(By.CssSelector("select[name='aday'] option[selected]")).Text);
+            acc.AnniversaryDay = driver.FindElement(By.CssSelector("select[name='aday'] option[selected]")).Text;
             acc.AnniversaryMonth = driver.FindElement(By.CssSelector("select[name='amonth'] option[selected]")).Text;
             acc.AnniversaryYear = driver.FindElement(By.CssSelector("input[name='ayear']")).GetAttribute("value");
 

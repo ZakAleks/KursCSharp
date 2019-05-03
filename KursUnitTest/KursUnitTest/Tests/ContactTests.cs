@@ -36,10 +36,10 @@ namespace KursUnitTest
             contactData.Email2 = "-";
             contactData.Email3 = "-";
             contactData.Homepage = "ivan.ru";
-            contactData.BirthdayDay = 14;
+            contactData.BirthdayDay = "14";
             contactData.BirthdayMonth = "April";
             contactData.BirthdayYear = "1999";
-            contactData.AnniversaryDay = 14;
+            contactData.AnniversaryDay = "14";
             contactData.AnniversaryMonth = "April";
             contactData.AnniversaryYear = "2040";
             contactData.SecondaryAddress = "Питер, какаято улица";
@@ -80,10 +80,10 @@ namespace KursUnitTest
             newContactData.Email2 = "-";
             newContactData.Email3 = "-";
             newContactData.Homepage = "petr.ru";
-            newContactData.BirthdayDay = 20;
+            newContactData.BirthdayDay = "20";
             newContactData.BirthdayMonth = "October";
             newContactData.BirthdayYear = "1966";
-            newContactData.AnniversaryDay = 20;
+            newContactData.AnniversaryDay = "20";
             newContactData.AnniversaryMonth = "october";
             newContactData.AnniversaryYear = "2025";
             newContactData.SecondaryAddress = "-";
