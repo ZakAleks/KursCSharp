@@ -97,7 +97,6 @@ d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\nunit.framework.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\WebDriver.Support.xml
 d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyComplete
-d:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\NUnit3.TestAdapter.dll
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\NUnit3.TestAdapter.pdb
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\nunit.engine.dll
@@ -123,3 +122,4 @@ c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyC
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.dll
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.pdb
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache
+D:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache

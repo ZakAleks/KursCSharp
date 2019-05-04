@@ -11,6 +11,8 @@ namespace KursUnitTest
     {
         private string allPhones;
         private string allEmails;
+        private string fullBirthdayDate;
+        private string fullAnniversaryDate;
 
         public string Id { get; set; }
 
@@ -54,6 +56,50 @@ namespace KursUnitTest
             }
         }
 
+        public string FullBirthdayDate
+        {
+            get
+            {
+                if (fullBirthdayDate != null)
+                {
+                    return fullBirthdayDate;
+                }
+                else
+                {
+                    if (GetFormatDate(BirthdayDay, BirthdayMonth, BirthdayYear) == "")
+                        return "";
+                    return ("Birthday " + GetFormatDate(BirthdayDay, BirthdayMonth, BirthdayYear)).Trim();
+                }
+
+            }
+            set
+            {
+                fullBirthdayDate = value;
+            }
+        }
+
+        public string FullAnniversaryDate
+        {
+            get
+            {
+                if (fullAnniversaryDate != null)
+                {
+                    return fullAnniversaryDate;
+                }
+                else
+                {
+                    if (GetFormatDate(AnniversaryDay, AnniversaryMonth, AnniversaryYear) == "")
+                        return "";
+                    return ("Anniversary " + GetFormatDate(AnniversaryDay, AnniversaryMonth, AnniversaryYear)).Trim();
+                }
+
+            }
+            set
+            {
+                fullAnniversaryDate = value;
+            }
+        }
+
         private static string GetFormatDate(string day, string month, string year)
         {
             if (day == "-")
@@ -83,48 +129,6 @@ namespace KursUnitTest
             }
 
             return day + month + year;
-        }
-
-        public string FullBirthdayDate
-        {
-            get
-            {
-                if (allEmails != null)
-                {
-                    return allEmails;
-                }
-                else
-                {
-
-                    return ("Birthday " + GetFormatDate(BirthdayDay, BirthdayMonth, BirthdayYear)).Trim();
-                }
-
-            }
-            set
-            {
-                allEmails = value;
-            }
-        }
-
-        public string FullAnniversaryDate
-        {
-            get
-            {
-                if (allEmails != null)
-                {
-                    return allEmails;
-                }
-                else
-                {
-
-                    return ("Anniversary" + GetFormatDate(AnniversaryDay, AnniversaryMonth, AnniversaryYear)).Trim();
-                }
-
-            }
-            set
-            {
-                allEmails = value;
-            }
         }
 
         private string CleanUp(string text)

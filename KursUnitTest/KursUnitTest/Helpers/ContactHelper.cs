@@ -213,6 +213,18 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public string GetContactDataFromDetails(int v)
+        {
+            manager.Navigator.GoToHomePage();
+            GoToDetailPage(v);
+            return driver.FindElement(By.CssSelector("div[id='content']")).Text;
+        }
+
+        private void GoToDetailPage(int v)
+        {
+            driver.FindElement(By.CssSelector("tr[name='entry'] a[href='view.php?id="+ v + "']")).Click();
+        }
+
         public ContactHelper SubminContactCreation()
         {
             driver.FindElement(By.CssSelector("input[name='submit']")).Click();

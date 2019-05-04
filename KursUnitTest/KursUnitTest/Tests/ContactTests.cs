@@ -218,7 +218,7 @@ namespace KursUnitTest
 
             AddressBookEntryData dataFromEditForm = app.Contacts.GetContactDataFromEditForm(1);
 
-            AddressBookEntryData dataFromTable = app.Contacts.GetContactDataFromTable(0);
+            string dataFromDetails = app.Contacts.GetContactDataFromDetails(1);
 
         }
     }
