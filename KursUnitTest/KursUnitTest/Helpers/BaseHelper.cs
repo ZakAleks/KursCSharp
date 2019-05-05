@@ -40,5 +40,27 @@ namespace KursUnitTest.Helpers
             }
         }
 
+        public string RemoveDouble(string text, string removeSymbol)
+        {
+            while (true)
+            {
+                int ishTextLength = text.Length;
+                text = text.Replace(removeSymbol + removeSymbol, removeSymbol);
+                if (text.Length == ishTextLength)
+                {
+                    return text;
+                }
+            }
+        }
+
+        public string CheckEmptyString(string text, string title)
+        {
+            if (string.IsNullOrEmpty(text))
+            {
+                return "";
+            }
+
+            return title + text;
+        }
     }
 }

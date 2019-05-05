@@ -218,8 +218,11 @@ namespace KursUnitTest
 
             AddressBookEntryData dataFromEditForm = app.Contacts.GetContactDataFromEditForm(1);
 
-            string dataFromDetails = app.Contacts.GetContactDataFromDetails(1);
+            string textFormatFromEditForm = app.Contacts.RemoveDouble(app.Contacts.GetDetailTextFormat(dataFromEditForm), "\r\n");
 
+            string textFormatFromDetails = (app.Contacts.RemoveDouble(app.Contacts.GetContactDataFromDetails(1), "\r\n")).Trim();
+
+            Assert.AreEqual(textFormatFromDetails, textFormatFromEditForm);
         }
     }
 }

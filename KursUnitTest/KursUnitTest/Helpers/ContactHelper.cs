@@ -85,6 +85,29 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public string GetDetailTextFormat(AddressBookEntryData acc)
+        {
+
+            string detailDataTextFormat = (acc.FirstName + CheckEmptyString(acc.MiddleName, " ") + CheckEmptyString(acc.LastName, " ") + Environment.NewLine
+                 + acc.Nickname + Environment.NewLine
+                 + acc.Title + Environment.NewLine
+                 + acc.Company + Environment.NewLine
+                 + acc.Address + Environment.NewLine
+                 + CheckEmptyString(acc.TelephoneHome, "H: ") + Environment.NewLine
+                 + CheckEmptyString(acc.TelephoneMobile, "M: ") + Environment.NewLine
+                 + CheckEmptyString(acc.TelephoneWork, "W: ") + Environment.NewLine
+                 + CheckEmptyString(acc.TelephoneFax, "F: ") + Environment.NewLine
+                 + acc.AllEmails + Environment.NewLine
+                 + CheckEmptyString(acc.Homepage, "Homepage:\r\n") + Environment.NewLine
+                 + acc.FullBirthdayDate + Environment.NewLine
+                 + acc.FullAnniversaryDate + Environment.NewLine
+                 + acc.SecondaryAddress + Environment.NewLine
+                 + CheckEmptyString(acc.SecondaryTelephone, "P: ") + Environment.NewLine
+                 + acc.SecondaryNotes).Trim();
+
+            return detailDataTextFormat;
+        }
+
         public AddressBookEntryData GetContactDataFromEditForm(int ind)
         {
 
@@ -222,7 +245,7 @@ namespace KursUnitTest.Helpers
 
         private void GoToDetailPage(int v)
         {
-            driver.FindElement(By.CssSelector("tr[name='entry'] a[href='view.php?id="+ v + "']")).Click();
+            driver.FindElement(By.XPath("(//table//tr[@name='entry'])["+ v +"]//a[contains(@href, 'view.php?id=')]")).Click();
         }
 
         public ContactHelper SubminContactCreation()

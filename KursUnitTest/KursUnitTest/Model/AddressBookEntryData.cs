@@ -250,6 +250,5 @@ namespace KursUnitTest
 
             return contactData;
         }
-
     }
 }
