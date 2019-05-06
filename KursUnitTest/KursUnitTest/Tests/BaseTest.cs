@@ -38,7 +38,9 @@ namespace KursUnitTest
             return l.ToString();
         }
 
-        public static string[] ListMonth = new  string[] { "-", "January", };
+        public static string[] ListBirthdayMonth = new  string[] { "-", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
+
+        public static string[] ListAnniversaryMonth = new string[] { "-", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december" };
 
         public static string GetRandomYear()
         {
@@ -54,10 +56,16 @@ namespace KursUnitTest
         }
 
 
-        public static string GetRandomMonth()
+        public static string GetRandomBirthdayMonth()
         {
 
-            return ListMonth[rnd.Next(0, ListMonth.Length)];
+            return ListBirthdayMonth[rnd.Next(0, ListBirthdayMonth.Length)];
+        }
+
+        public static string GetRandomAnniversaryMonth()
+        {
+
+            return ListAnniversaryMonth[rnd.Next(0, ListAnniversaryMonth.Length)];
         }
 
         public static string GenerateRandomString(int max)
