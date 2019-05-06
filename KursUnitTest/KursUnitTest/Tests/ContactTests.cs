@@ -16,35 +16,46 @@ namespace KursUnitTest
     public class ContactTests : AuthBaseTest
     {
 
-        [Test]
-        public void ContactCreationTest()
+        public static IEnumerable<AddressBookEntryData> RandomContactDataProvider()
         {
+            List<AddressBookEntryData> contacts = new List<AddressBookEntryData>();
 
-            AddressBookEntryData contactData = new AddressBookEntryData();
-            contactData.FirstName = "Ivan";
-            contactData.MiddleName = "Ivanov";
-            contactData.LastName = "Ivanovich";
-            contactData.Nickname = "IVAV";
-            contactData.Title = "Брат";
-            contactData.Company = "Безработный";
-            contactData.Address = "Москва, какаято улица";
-            contactData.TelephoneHome = "+79111111111";
-            contactData.TelephoneMobile = "+79777777777";
-            contactData.TelephoneWork = "+79222222222";
-            contactData.TelephoneFax = "22-22-22";
-            contactData.Email = "test@ivan.ru";
-            contactData.Email2 = "-";
-            contactData.Email3 = "-";
-            contactData.Homepage = "ivan.ru";
-            contactData.BirthdayDay = "14";
-            contactData.BirthdayMonth = "April";
-            contactData.BirthdayYear = "1999";
-            contactData.AnniversaryDay = "14";
-            contactData.AnniversaryMonth = "April";
-            contactData.AnniversaryYear = "2040";
-            contactData.SecondaryAddress = "Питер, какаято улица";
-            contactData.SecondaryTelephone = "+79333333333";
-            contactData.SecondaryNotes = "Тут какаято информация о нем";
+            for (int i = 0; i < 5; i++)
+            {
+                contacts.Add(new AddressBookEntryData()
+                {
+                    FirstName = GenerateRandomString(10),
+                    MiddleName = GenerateRandomString(10),
+                    LastName = GenerateRandomString(10),
+                    Nickname = GenerateRandomString(10),
+                    Title = GenerateRandomString(20),
+                    Company = GenerateRandomString(20),
+                    Address = GenerateRandomString(20),
+                    TelephoneHome = GenerateRandomString(20),
+                    TelephoneMobile = GenerateRandomString(20),
+                    TelephoneWork = GenerateRandomString(20),
+                    TelephoneFax = GenerateRandomString(20),
+                    Email = GenerateRandomString(20),
+                    Email2 = GenerateRandomString(20),
+                    Email3 = GenerateRandomString(20),
+                    Homepage = GenerateRandomString(20),
+                    BirthdayDay = GetRandomDay(),
+                    BirthdayMonth = GetRandomMonth(),
+                    BirthdayYear = GetRandomYear(),
+                    AnniversaryDay = GetRandomDay(),
+                    AnniversaryMonth = GetRandomMonth(),
+                    AnniversaryYear = GetRandomYear(),
+                    SecondaryAddress = GenerateRandomString(20),
+                    SecondaryTelephone = GenerateRandomString(20),
+                    SecondaryNotes = GenerateRandomString(20),
+                });
+            }
+            return contacts;
+        }
+
+        [Test, TestCaseSource("RandomContactDataProvider")]
+        public void ContactCreationTest(AddressBookEntryData contactData)
+        {
 
             List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
 

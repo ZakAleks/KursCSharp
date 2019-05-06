@@ -47,7 +47,7 @@ namespace KursUnitTest
 
         public override string ToString()
         {
-            return "Name=" + GroupName;
+            return "Name=" + GroupName + "\nHeader="+ GroupHeader + "\nFooter=" + GroupFooter;
         }
 
         public int CompareTo(GroupData other)

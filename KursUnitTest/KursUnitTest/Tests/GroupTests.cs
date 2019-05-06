@@ -15,13 +15,25 @@ namespace KursUnitTest
     [TestFixture]
     public class GroupTests : AuthBaseTest
     {
-        [Test]
-        public void GroupCreationTest()
+        public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
-            GroupData group = new GroupData();
-            group.GroupName = "Group Name";
-            group.GroupHeader = "Group Header";
-            group.GroupFooter = "Group Footer";
+            List<GroupData> groups = new List<GroupData>();
+
+            for (int i = 0; i< 5; i++)
+            {
+                groups.Add(new GroupData()
+                {
+                    GroupName = GenerateRandomString(30),
+                    GroupHeader = GenerateRandomString(100),
+                    GroupFooter = GenerateRandomString(100)
+                });
+            }
+            return groups;
+        }
+
+        [Test, TestCaseSource("RandomGroupDataProvider")]
+        public void GroupCreationTest(GroupData group)
+        {
 
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
 
@@ -49,29 +61,6 @@ namespace KursUnitTest
             app.Groups.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCounts());
-
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
-            oldGroups.Add(group);
-            oldGroups.Sort();
-            newGroups.Sort();
-            Assert.AreEqual(oldGroups, newGroups);
-        }
-
-        [Test]
-        public void EmptyGroupCreationTest()
-        {
-
-            GroupData group = new GroupData();
-            group.GroupName = "";
-            group.GroupHeader = "";
-            group.GroupFooter = "";
-
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
-
-            app.Groups.Create(group);
-
-            Assert.AreEqual(oldGroups.Count+1, app.Groups.GetGroupsCounts());
-
 
             List<GroupData> newGroups = app.Groups.GetGroupsList();
             oldGroups.Add(group);
