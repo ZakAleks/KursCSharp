@@ -24,7 +24,7 @@ namespace KursUnitTest
         {
             List<GroupData> groups = new List<GroupData>();
 
-            for (int i = 0; i< 5; i++)
+            for (int i = 0; i < 5; i++)
             {
                 groups.Add(new GroupData()
                 {
@@ -40,7 +40,7 @@ namespace KursUnitTest
         {
             List<GroupData> groups = new List<GroupData>();
 
-            string[] lines =  File.ReadAllLines("groups.csv");
+            string[] lines = File.ReadAllLines("groups.csv");
 
             foreach (var l in lines)
             {
@@ -66,7 +66,7 @@ namespace KursUnitTest
         {
 
             return JsonConvert.DeserializeObject<List<GroupData>>(File.ReadAllText("groups.json"));
-            
+
         }
 
         public static IEnumerable<GroupData> GroupDataFromExcelFile()
@@ -185,7 +185,7 @@ namespace KursUnitTest
 
             List<GroupData> oldGroups = app.Groups.GetGroupsList();
 
-            if (oldGroups.Count==0)
+            if (oldGroups.Count == 0)
             {
                 GroupData group = new GroupData();
                 group.GroupName = "";
@@ -212,6 +212,27 @@ namespace KursUnitTest
             {
                 Assert.AreNotEqual(group.Id, toBeRemoved.Id);
             }
+
+        }
+
+        [Test]
+        public void TestDBConnectivity()
+        {
+
+            /*
+            var start = DateTime.Now;
+            List<GroupData> fromUserInterface = app.Groups.GetGroupsList();
+            var end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
+            */
+
+            var start = DateTime.Now;
+            AdressBookDB db = new AdressBookDB();
+
+            List<GroupData> fromDB = (from g in db.Groups select g).ToList();
+            db.Close();
+            var end = DateTime.Now;
+            System.Console.Out.WriteLine(end.Subtract(start));
 
         }
 

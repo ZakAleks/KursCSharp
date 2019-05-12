@@ -127,3 +127,9 @@ C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CoreC
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csproj.CopyComplete
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.dll
 C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.pdb
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\linq2db.dll
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\MySql.Data.dll
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\linq2db.pdb
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\linq2db.xml
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\MySql.Data.xml
+c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\KursUnitTest.dll.config

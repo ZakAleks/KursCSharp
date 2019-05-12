@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinqToDB.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,17 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
+    [Table(Name = "group_list")]
+
     public class GroupData : IEquatable<GroupData>, IComparable<GroupData>
     {
+        [Column(Name = "group_name")]
         public string GroupName { get; set; }
+        [Column(Name = "group_header")]
         public string GroupHeader { get; set; }
+        [Column(Name = "group_footer")]
         public string GroupFooter { get; set; }
-
+        [Column(Name = "group_id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
         public GroupData()
