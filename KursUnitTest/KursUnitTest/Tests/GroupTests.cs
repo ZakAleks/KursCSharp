@@ -59,11 +59,7 @@ namespace KursUnitTest
 
         public static IEnumerable<GroupData> GroupDataFromXmlFile()
         {
-            List<GroupData> groups = new List<GroupData>();
-
-            string[] lines = File.ReadAllLines("groups.Xml");
-
-            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader("groups.csv"));
+            return (List<GroupData>)new XmlSerializer(typeof(List<GroupData>)).Deserialize(new StreamReader("groups.xml"));
         }
 
         public static IEnumerable<GroupData> GroupDataFromJsonFile()

@@ -1,14 +1,17 @@
-﻿using NUnit.Framework;
+﻿using Newtonsoft.Json;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace KursUnitTest
 {
@@ -53,7 +56,20 @@ namespace KursUnitTest
             return contacts;
         }
 
-        [Test, TestCaseSource("RandomContactDataProvider")]
+        public static IEnumerable<AddressBookEntryData> ContactsDataFromXmlFile()
+        {
+            return (List<AddressBookEntryData>)new XmlSerializer(typeof(List<AddressBookEntryData>)).Deserialize(new StreamReader("contacts.xml"));
+        }
+
+        public static IEnumerable<AddressBookEntryData> ContactsDataFromJsonFile()
+        {
+
+            return JsonConvert.DeserializeObject<List<AddressBookEntryData>>(File.ReadAllText("contacts.json"));
+
+        }
+
+
+        [Test, TestCaseSource("ContactsDataFromJsonFile")]
         public void ContactCreationTest(AddressBookEntryData contactData)
         {
 

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfAddressBookEntryData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <AddressBookEntryData>
+    <AllPhones>;;
+-8&lt;9
+
+-/2?4,=&lt;&gt;090@.;A</AllPhones>
+    <AllEmails>*!18#8*)'+-0
+)?3?
+//=+69&amp;8;*);==25(47</AllEmails>
+    <FullBirthdayDate>Birthday 31. January ,,2</FullBirthdayDate>
+    <FullAnniversaryDate>Anniversary 26. March</FullAnniversaryDate>
+    <FirstName>(?#&amp;)</FirstName>
+    <MiddleName>1</MiddleName>
+    <LastName>&lt;"#</LastName>
+    <Nickname>6</Nickname>
+    <Title>6%;7?='23=66@734</Title>
+    <Company>8$5#&lt;.9289979)-</Company>
+    <Address>0A0=0/?+8,'14</Address>
+    <TelephoneHome>;;)</TelephoneHome>
+    <TelephoneMobile>-"!8&lt;9</TelephoneMobile>
+    <TelephoneWork>&amp;</TelephoneWork>
+    <TelephoneFax>$0&lt;&lt;</TelephoneFax>
+    <Email>*!18#8*)'+-0</Email>
+    <Email2>)?3?</Email2>
+    <Email3>//=+69&amp;8;*);==25(47</Email3>
+    <Homepage>82</Homepage>
+    <BirthdayDay>31</BirthdayDay>
+    <BirthdayMonth>January</BirthdayMonth>
+    <BirthdayYear>,,2</BirthdayYear>
+    <AnniversaryDay>26</AnniversaryDay>
+    <AnniversaryMonth>March</AnniversaryMonth>
+    <AnniversaryYear />
+    <SecondaryAddress>.-8@-92,?!</SecondaryAddress>
+    <SecondaryTelephone>-/2?4!,=&lt;(&gt;090@.;'A!</SecondaryTelephone>
+    <SecondaryNotes>6,/&amp;&gt;*(?4,4@</SecondaryNotes>
+  </AddressBookEntryData>
+  <AddressBookEntryData>
+    <AllPhones>4=6@:;97*;=.
+.-18
+,@:?3-19?++.86</AllPhones>
+    <AllEmails>&lt;3*#&lt;1'="'.$3&amp;
+%12783&gt;3+'?
+!764%-06'5(1&gt;</AllEmails>
+    <FullBirthdayDate>Birthday 13. July</FullBirthdayDate>
+    <FullAnniversaryDate>Anniversary 30. &gt;&gt;&amp;&amp;</FullAnniversaryDate>
+    <FirstName>1</FirstName>
+    <MiddleName>&lt;/</MiddleName>
+    <LastName>;?:+*2&gt;A0.</LastName>
+    <Nickname>8&amp;@</Nickname>
+    <Title />
+    <Company>8$#979$</Company>
+    <Address>)=+14A74-(&amp;#&lt;+"?)?;</Address>
+    <TelephoneHome>4=&amp;6@:;&amp;97*#;=#.</TelephoneHome>
+    <TelephoneMobile>.-18</TelephoneMobile>
+    <TelephoneWork>,@:?3-"&amp;19?++.86</TelephoneWork>
+    <TelephoneFax>&lt;&amp;2&lt;8?$*@)6</TelephoneFax>
+    <Email>&lt;3*#&lt;1'="'.$3&amp;</Email>
+    <Email2>%12783&gt;3+'?</Email2>
+    <Email3>!764%-06'5(1&gt;</Email3>
+    <Homepage>;15:.)2-A:</Homepage>
+    <BirthdayDay>13</BirthdayDay>
+    <BirthdayMonth>July</BirthdayMonth>
+    <BirthdayYear />
+    <AnniversaryDay>30</AnniversaryDay>
+    <AnniversaryMonth>-</AnniversaryMonth>
+    <AnniversaryYear>&gt;&gt;&amp;&amp;</AnniversaryYear>
+    <SecondaryAddress>5*8$2,1)</SecondaryAddress>
+    <SecondaryTelephone />
+    <SecondaryNotes>'9-?3:6$68=&amp;3/+7</SecondaryNotes>
+  </AddressBookEntryData>
+</ArrayOfAddressBookEntryData>

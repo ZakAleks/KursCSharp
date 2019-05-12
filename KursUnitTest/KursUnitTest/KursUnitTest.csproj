@@ -84,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="contacts.json" />
     <None Include="groups.json" />
     <None Include="groups.xls" />
     <None Include="packages.config" />
@@ -92,6 +93,7 @@
     <None Include="groups.csv" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="contacts.xml" />
     <Content Include="groups.xml" />
   </ItemGroup>
   <ItemGroup>

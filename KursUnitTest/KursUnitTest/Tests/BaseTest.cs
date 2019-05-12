@@ -74,7 +74,7 @@ namespace KursUnitTest
             StringBuilder builder = new StringBuilder();
             for (int i = 0; i < l; i++)
             {
-                builder.Append(Convert.ToChar(rnd.Next(33, 66)));
+                builder.Append(Convert.ToChar(rnd.Next(33, 243)));
             }
             return builder.ToString();
         }
