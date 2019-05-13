@@ -64,5 +64,22 @@ namespace KursUnitTest
             }
             return GroupName.CompareTo(other.GroupName);
         }
+
+        public static List<GroupData> GetAll()
+        {
+            using (AdressBookDB db = new AdressBookDB())
+            {
+                return (from g in db.Groups select g).ToList();
+            }
+        }
+
+        public List<AddressBookEntryData> GetContacts()
+        {
+            using (AdressBookDB db = new AdressBookDB())
+            {
+                return (from c in db.Contacts from gcr in db.GCR.Where(p => p.GroupID == Id && p.ContactID == c.Id) select c).Distinct().ToList();
+            }
+        }
+
     }
 }

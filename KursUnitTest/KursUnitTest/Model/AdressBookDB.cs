@@ -19,5 +19,7 @@ namespace KursUnitTest
 
         public ITable<AddressBookEntryData> Contacts { get { return GetTable<AddressBookEntryData>(); } }
 
+        public ITable<GroupContactRelation> GCR { get { return GetTable<GroupContactRelation>(); } }
+
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LinqToDB.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace KursUnitTest
 {
+
+    [Table(Name = "addressbook")]
     public class AddressBookEntryData : IEquatable<AddressBookEntryData>, IComparable<AddressBookEntryData>
     {
         private string allPhones;
@@ -14,6 +17,7 @@ namespace KursUnitTest
         private string fullBirthdayDate;
         private string fullAnniversaryDate;
 
+        [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
 
         public string AllPhones
@@ -151,8 +155,12 @@ namespace KursUnitTest
             return text + Environment.NewLine;
         }
 
+
+        [Column(Name = "firstname")]
         public string FirstName { get; set; }
+        [Column(Name = "middlename")]
         public string MiddleName { get; set; }
+        [Column(Name = "lastname")]
         public string LastName { get; set; }
         public string Nickname { get; set; }
         public string Title { get; set; }
@@ -249,6 +257,14 @@ namespace KursUnitTest
             contactData.SecondaryNotes = "Тут какаято информация о нем";
 
             return contactData;
+        }
+
+        public static List<AddressBookEntryData> GetAll()
+        {
+            using (AdressBookDB db = new AdressBookDB())
+            {
+                return (from c in db.Contacts select c).ToList();
+            }
         }
     }
 }

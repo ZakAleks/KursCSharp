@@ -25,6 +25,29 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public void AddContactToGroup(AddressBookEntryData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            ClearGroupFilter();
+            SelectContactInMainPage(contact);
+            SelectGroupToAdd(group);
+            CommitAddingContactToGroup();
+
+
+        }
+
+        internal ContactHelper CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.CssSelector("input[name='add']")).Click();
+            return this;
+        }
+
+        internal ContactHelper SelectContactInMainPage(AddressBookEntryData contact)
+        {
+            driver.FindElement(By.XPath("(//table[@id='maintable']//tr//input[@name='selected[]' and @value='"+ contact .Id+ "'])")).Click();
+            return this;
+        }
+
         public ContactHelper Modify(int v, AddressBookEntryData newContactData)
         {
             manager.Navigator.GoToHomePage();

@@ -16,6 +16,8 @@ namespace KursUnitTest
     //[TestFixture]
     public class BaseTest
     {
+        public static bool PERFORM_LONG_UI_CHECKS = false;
+
         protected ApplicationManager app;
         /// <summary>
         /// функция выполняется перед каждым тестом
@@ -84,14 +86,6 @@ namespace KursUnitTest
         /// </summary>
         [OneTimeSetUp]
         public void OnOneTimeSetUp()
-        {
-        }
-
-        /// <summary>
-        /// функция выполняется после каждого теста
-        /// </summary>
-        [TearDown]
-        public void TearDown()
         {
         }
 

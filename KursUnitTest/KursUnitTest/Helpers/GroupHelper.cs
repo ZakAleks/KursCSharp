@@ -146,5 +146,31 @@ namespace KursUnitTest.Helpers
             GroupCach = null;
             return this;
         }
+
+        public GroupHelper Delete(GroupData group)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            InitGroupDelete();
+            ReturnsToGroupPage();
+            return this;
+        }
+
+        public GroupHelper Modify(GroupData group, GroupData newGroupData)
+        {
+            manager.Navigator.GoToGroupsPage();
+            SelectGroup(group.Id);
+            InitGroupModify();
+            FillGroupForm(newGroupData);
+            SubmitGroupModify();
+            ReturnsToGroupPage();
+            return this;
+        }
+
+        public GroupHelper SelectGroup(string id)
+        {
+            driver.FindElement(By.XPath("(//form//input[@name='selected[]' and @value='"+ id + "'])")).Click();
+            return this;
+        }
     }
 }

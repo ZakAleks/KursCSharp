@@ -18,7 +18,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 namespace KursUnitTest
 {
     [TestFixture]
-    public class GroupTests : AuthBaseTest
+    public class GroupTests : BaseGroupTest
     {
         public static IEnumerable<GroupData> RandomGroupDataProvider()
         {
@@ -96,13 +96,13 @@ namespace KursUnitTest
         public void GroupCreationTest(GroupData group)
         {
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.Groups.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCounts());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -117,13 +117,13 @@ namespace KursUnitTest
             group.GroupHeader = "zzzz";
             group.GroupFooter = "zzzz";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             app.Groups.Create(group);
 
             Assert.AreEqual(oldGroups.Count + 1, app.Groups.GetGroupsCounts());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            List<GroupData> newGroups = GroupData.GetAll();
             oldGroups.Add(group);
             oldGroups.Sort();
             newGroups.Sort();
@@ -139,7 +139,7 @@ namespace KursUnitTest
             newGroupData.GroupHeader = "2222";
             newGroupData.GroupFooter = "3333";
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
 
             if (oldGroups.Count == 0)
             {
@@ -149,22 +149,22 @@ namespace KursUnitTest
                 group.GroupFooter = "";
                 app.Groups.Create(group);
 
-                oldGroups = app.Groups.GetGroupsList();
+                oldGroups = GroupData.GetAll();
             }
 
             var oldData = oldGroups[0];
 
-            app.Groups.Modify(1, newGroupData);
+            app.Groups.Modify(oldGroups[0], newGroupData);
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCounts());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups[0].GroupName = newGroupData.GroupName;
             oldGroups[0].GroupHeader = newGroupData.GroupHeader;
             oldGroups[0].GroupFooter = newGroupData.GroupFooter;
-            oldGroups.Sort();
-            newGroups.Sort();
+            //oldGroups.Sort();
+            //newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
 
             foreach (var group in newGroups)
@@ -183,7 +183,9 @@ namespace KursUnitTest
         public void GroupDeleteTest()
         {
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<GroupData> oldGroups = GroupData.GetAll();
+
+            var toBeRemoved = oldGroups[0];
 
             if (oldGroups.Count == 0)
             {
@@ -193,19 +195,16 @@ namespace KursUnitTest
                 group.GroupFooter = "";
                 app.Groups.Create(group);
 
-                oldGroups = app.Groups.GetGroupsList();
+                oldGroups = GroupData.GetAll();
             }
 
-            app.Groups.Delete(1);
+            app.Groups.Delete(toBeRemoved);
 
             Assert.AreEqual(oldGroups.Count - 1, app.Groups.GetGroupsCounts());
 
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
-
-            var toBeRemoved = oldGroups[0];
+            List<GroupData> newGroups = GroupData.GetAll();
 
             oldGroups.RemoveAt(0);
-
             Assert.AreEqual(oldGroups, newGroups);
 
             foreach (var group in newGroups)
@@ -219,20 +218,27 @@ namespace KursUnitTest
         public void TestDBConnectivity()
         {
 
-            /*
             var start = DateTime.Now;
             List<GroupData> fromUserInterface = app.Groups.GetGroupsList();
             var end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
-            */
 
-            var start = DateTime.Now;
-            AdressBookDB db = new AdressBookDB();
 
-            List<GroupData> fromDB = (from g in db.Groups select g).ToList();
-            db.Close();
-            var end = DateTime.Now;
+            start = DateTime.Now;
+            List<GroupData> fromDB = GroupData.GetAll();
+            end = DateTime.Now;
             System.Console.Out.WriteLine(end.Subtract(start));
+
+        }
+
+        [Test]
+        public void TestDBConnectivity2()
+        {
+
+            foreach (var contact in GroupData.GetAll()[0].GetContacts())
+            {
+                System.Console.Out.WriteLine(contact);
+            }
 
         }
 
