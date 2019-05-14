@@ -93,8 +93,10 @@
     <Compile Include="Helpers\GroupHelper.cs" />
     <Compile Include="Helpers\LoginHelper.cs" />
     <Compile Include="Helpers\NavigationHelper.cs" />
+    <Compile Include="Tests\DeletingContactFromGroupTests.cs" />
     <Compile Include="Tests\AddingContactToGroupTests.cs" />
     <Compile Include="Tests\AuthBaseTest.cs" />
+    <Compile Include="Tests\BaseContactTest.cs" />
     <Compile Include="Tests\BaseGroupTest.cs" />
     <Compile Include="Tests\ContactTests.cs" />
     <Compile Include="Tests\LoginTests.cs" />

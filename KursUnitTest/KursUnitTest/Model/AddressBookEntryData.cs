@@ -20,6 +20,9 @@ namespace KursUnitTest
         [Column(Name = "id"), PrimaryKey]
         public string Id { get; set; }
 
+        [Column(Name = "deprecated"), PrimaryKey]
+        public string Deprecated { get; set; }
+
         public string AllPhones
         {
             get
@@ -162,29 +165,47 @@ namespace KursUnitTest
         public string MiddleName { get; set; }
         [Column(Name = "lastname")]
         public string LastName { get; set; }
+        [Column(Name = "nickname")]
         public string Nickname { get; set; }
+        [Column(Name = "title")]
         public string Title { get; set; }
+        [Column(Name = "company")]
         public string Company { get; set; }
+        [Column(Name = "address")]
         public string Address { get; set; }
+        [Column(Name = "home")]
         public string TelephoneHome { get; set; }
+        [Column(Name = "mobile")]
         public string TelephoneMobile { get; set; }
+        [Column(Name = "work")]
         public string TelephoneWork { get; set; }
+        [Column(Name = "fax")]
         public string TelephoneFax { get; set; }
+        [Column(Name = "email")]
         public string Email { get; set; }
+        [Column(Name = "email2")]
         public string Email2 { get; set; }
+        [Column(Name = "email3")]
         public string Email3 { get; set; }
+        [Column(Name = "homepage")]
         public string Homepage { get; set; }
-
+        [Column(Name = "bday")]
         public string BirthdayDay { get; set; }
+        [Column(Name = "bmonth")]
         public string BirthdayMonth { get; set; }
+        [Column(Name = "byear")]
         public string BirthdayYear { get; set; }
-
+        [Column(Name = "aday")]
         public string AnniversaryDay { get; set; }
+        [Column(Name = "amonth")]
         public string AnniversaryMonth { get; set; }
+        [Column(Name = "ayear")]
         public string AnniversaryYear { get; set; }
-
+        [Column(Name = "address2")]
         public string SecondaryAddress { get; set; }
+        [Column(Name = "phone2")]
         public string SecondaryTelephone { get; set; }
+        [Column(Name = "notes")]
         public string SecondaryNotes { get; set; }
 
         public AddressBookEntryData()
@@ -202,18 +223,18 @@ namespace KursUnitTest
                 return true;
             }
 
-            return FirstName == other.FirstName && LastName == other.LastName;
+            return FirstName == other.FirstName && LastName == other.LastName && Id == other.Id;
 
         }
 
         public override int GetHashCode()
         {
-            return (FirstName + LastName).GetHashCode();
+            return (FirstName + LastName +Id).GetHashCode();
         }
 
         public override string ToString()
         {
-            return "Name=" + FirstName;
+            return "Name=" + FirstName +"Id="+ Id;
         }
 
         public int CompareTo(AddressBookEntryData other)
@@ -225,7 +246,11 @@ namespace KursUnitTest
             if (res != 0)
                 return res;
 
-            return LastName.CompareTo(other.LastName);
+            var res2 = LastName.CompareTo(other.LastName);
+            if (res != 0)
+                return res2;
+
+            return Id.CompareTo(other.Id);
         }
 
         public static AddressBookEntryData GetTestContact()
@@ -263,7 +288,7 @@ namespace KursUnitTest
         {
             using (AdressBookDB db = new AdressBookDB())
             {
-                return (from c in db.Contacts select c).ToList();
+                return (from c in db.Contacts.Where(x => x.Deprecated == "0000-00-00 00:00:00") select c).ToList();
             }
         }
     }

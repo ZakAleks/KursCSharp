@@ -133,3 +133,4 @@ c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\linq2db.pdb
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\linq2db.xml
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\MySql.Data.xml
 c:\CODE\KursCSharp\KursUnitTest\KursUnitTest\bin\Debug\KursUnitTest.dll.config
+C:\CODE\KursCSharp\KursUnitTest\KursUnitTest\obj\Debug\KursUnitTest.csprojAssemblyReference.cache

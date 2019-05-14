@@ -42,13 +42,13 @@ namespace KursUnitTest
                 return true;
             }
 
-            return GroupName == other.GroupName && GroupHeader == other.GroupHeader && GroupFooter == other.GroupFooter;
+            return GroupName == other.GroupName && GroupHeader == other.GroupHeader && GroupFooter == other.GroupFooter && Id == other.Id;
 
         }
 
         public override int GetHashCode()
         {
-            return (GroupName + GroupHeader + GroupFooter).GetHashCode();
+            return (GroupName + GroupHeader + GroupFooter + Id).GetHashCode();
         }
 
         public override string ToString()
@@ -62,7 +62,12 @@ namespace KursUnitTest
             {
                 return 1;
             }
-            return GroupName.CompareTo(other.GroupName);
+
+            var res = GroupName.CompareTo(other.GroupName);
+            if (res != 0)
+                return res;
+
+            return Id.CompareTo(other.Id);
         }
 
         public static List<GroupData> GetAll()
@@ -77,7 +82,7 @@ namespace KursUnitTest
         {
             using (AdressBookDB db = new AdressBookDB())
             {
-                return (from c in db.Contacts from gcr in db.GCR.Where(p => p.GroupID == Id && p.ContactID == c.Id) select c).Distinct().ToList();
+                return (from c in db.Contacts from gcr in db.GCR.Where(p => p.GroupID == Id && p.ContactID == c.Id && c.Deprecated == "0000-00-00 00:00:00") select c).Distinct().ToList();
             }
         }
 

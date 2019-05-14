@@ -16,7 +16,7 @@ using System.Xml.Serialization;
 namespace KursUnitTest
 {
     [TestFixture]
-    public class ContactTests : AuthBaseTest
+    public class ContactTests : BaseContactTest
     {
 
         public static IEnumerable<AddressBookEntryData> RandomContactDataProvider()
@@ -73,13 +73,13 @@ namespace KursUnitTest
         public void ContactCreationTest(AddressBookEntryData contactData)
         {
 
-            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> oldContacts = AddressBookEntryData.GetAll();
 
             app.Contacts.Create(contactData);
 
             Assert.AreEqual(oldContacts.Count + 1, app.Contacts.GetContactsCounts());
 
-            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> newContacts = AddressBookEntryData.GetAll();
 
             oldContacts.Add(contactData);
             oldContacts.Sort();
@@ -117,7 +117,7 @@ namespace KursUnitTest
             newContactData.SecondaryTelephone = "-";
             newContactData.SecondaryNotes = "-";
 
-            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> oldContacts = AddressBookEntryData.GetAll();
 
             if (oldContacts.Count == 0)
             {
@@ -125,16 +125,16 @@ namespace KursUnitTest
 
                 app.Contacts.Create(contactData);
 
-                oldContacts = app.Contacts.GetContactsList();
+                oldContacts = AddressBookEntryData.GetAll();
             }
 
             var oldData = oldContacts[0];
 
-            app.Contacts.Modify(1, newContactData);
+            app.Contacts.Modify(oldData, newContactData);
 
             Assert.AreEqual(oldContacts.Count, app.Contacts.GetContactsCounts());
 
-            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> newContacts = AddressBookEntryData.GetAll();
             oldContacts[0].FirstName = newContactData.FirstName;
             oldContacts[0].LastName = newContactData.LastName;
             oldContacts.Sort();
@@ -156,7 +156,7 @@ namespace KursUnitTest
         {
             app.Navigator.GoToHomePage();
 
-            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> oldContacts = AddressBookEntryData.GetAll();
 
             if (oldContacts.Count == 0)
             {
@@ -164,16 +164,16 @@ namespace KursUnitTest
 
                 app.Contacts.Create(contactData);
 
-                oldContacts = app.Contacts.GetContactsList();
+                oldContacts = AddressBookEntryData.GetAll();
             }
 
-            app.Contacts.DeletFirstMetod(1);
+            var toBeRemoved = oldContacts[0];
+
+            app.Contacts.DeletFirstMetod(toBeRemoved.Id);
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCounts());
 
-            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
-
-            var toBeRemoved = oldContacts[0];
+            List<AddressBookEntryData> newContacts = AddressBookEntryData.GetAll();
 
             oldContacts.RemoveAt(0);
 
@@ -192,7 +192,7 @@ namespace KursUnitTest
         {
             app.Navigator.GoToHomePage();
 
-            List<AddressBookEntryData> oldContacts = app.Contacts.GetContactsList();
+            List<AddressBookEntryData> oldContacts = AddressBookEntryData.GetAll();
 
             if (oldContacts.Count == 0)
             {
@@ -200,16 +200,16 @@ namespace KursUnitTest
 
                 app.Contacts.Create(contactData);
 
-                oldContacts = app.Contacts.GetContactsList();
+                oldContacts = AddressBookEntryData.GetAll();
             }
 
-            app.Contacts.DeletSecondMetod(1);
+            var toBeRemoved = oldContacts[0];
+
+            app.Contacts.DeletSecondMetod(toBeRemoved.Id);
 
             Assert.AreEqual(oldContacts.Count - 1, app.Contacts.GetContactsCounts());
 
-            List<AddressBookEntryData> newContacts = app.Contacts.GetContactsList();
-
-            var toBeRemoved = oldContacts[0];
+            List<AddressBookEntryData> newContacts = AddressBookEntryData.GetAll();
 
             oldContacts.RemoveAt(0);
 

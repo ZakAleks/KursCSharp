@@ -25,15 +25,52 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public void DelContactfromGroup(AddressBookEntryData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupFilter(group.Id);
+            SelectContactInMainPage(contact.Id);
+            CommitDeletingContactfromGroup();
+
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div[class='msgbox']")).Count > 0);
+        }
+
+        internal ContactHelper SelectGroupFilter(string id)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByValue(id);
+            return this;
+        }
+
+        internal ContactHelper CommitDeletingContactfromGroup()
+        {
+            driver.FindElement(By.CssSelector("input[name='remove']")).Click();
+            return this;
+        }
+
         public void AddContactToGroup(AddressBookEntryData contact, GroupData group)
         {
             manager.Navigator.GoToHomePage();
             ClearGroupFilter();
-            SelectContactInMainPage(contact);
-            SelectGroupToAdd(group);
+            SelectContactInMainPage(contact.Id);
+            SelectGroupToAdd(group.GroupName);
             CommitAddingContactToGroup();
 
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10)).Until(d => d.FindElements(By.CssSelector("div[class='msgbox']")).Count > 0);
 
+        }
+
+        internal ContactHelper SelectGroupToAdd(string groupName)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(groupName);
+
+            return this;
+        }
+
+        internal ContactHelper ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+
+            return this;
         }
 
         internal ContactHelper CommitAddingContactToGroup()
@@ -42,9 +79,9 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
-        internal ContactHelper SelectContactInMainPage(AddressBookEntryData contact)
+        internal ContactHelper SelectContactInMainPage(string id)
         {
-            driver.FindElement(By.XPath("(//table[@id='maintable']//tr//input[@name='selected[]' and @value='"+ contact .Id+ "'])")).Click();
+            driver.FindElement(By.CssSelector("input[id='"+ id + "']")).Click();
             return this;
         }
 
@@ -99,10 +136,28 @@ namespace KursUnitTest.Helpers
             return this;
         }
 
+        public ContactHelper DeletFirstMetod(string id)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(id);
+            SubmitContactDelete();
+            ReturnsToHomePage();
+            return this;
+        }
+
         public ContactHelper DeletSecondMetod(int v)
         {
             manager.Navigator.GoToHomePage();
             SelectContactInMainPage(v);
+            SubmitContactDelete();
+            ReturnsToHomePage();
+            return this;
+        }
+
+        public ContactHelper DeletSecondMetod(string id)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContactInMainPage(id);
             SubmitContactDelete();
             ReturnsToHomePage();
             return this;
@@ -129,6 +184,16 @@ namespace KursUnitTest.Helpers
                  + acc.SecondaryNotes).Trim();
 
             return detailDataTextFormat;
+        }
+
+        public ContactHelper Modify(AddressBookEntryData oldData, AddressBookEntryData newContactData)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(oldData.Id);
+            FillAdressEntryForm(newContactData);
+            SubmitContactModify();
+            ReturnsToHomePage();
+            return this;
         }
 
         public AddressBookEntryData GetContactDataFromEditForm(int ind)
@@ -206,6 +271,12 @@ namespace KursUnitTest.Helpers
         public ContactHelper SelectContact(int v)
         {
             driver.FindElement(By.XPath("(//table[@id='maintable']//tr//img[@title='Edit'])[" + v + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(string id)
+        {
+            driver.FindElement(By.CssSelector("tr[name='entry'] a[href='edit.php?id="+ id + "']")).Click();
             return this;
         }
 

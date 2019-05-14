@@ -154,7 +154,7 @@ namespace KursUnitTest
 
             var oldData = oldGroups[0];
 
-            app.Groups.Modify(oldGroups[0], newGroupData);
+            app.Groups.Modify(oldData, newGroupData);
 
             Assert.AreEqual(oldGroups.Count, app.Groups.GetGroupsCounts());
 
