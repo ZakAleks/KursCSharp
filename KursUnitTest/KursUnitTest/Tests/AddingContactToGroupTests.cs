@@ -13,10 +13,30 @@ namespace KursUnitTest
         [Test]
         public void TestAddingContactToGroup()
         {
+            List<GroupData> oldGroups = GroupData.GetAll();
 
-            var group = GroupData.GetAll()[0];
+            if (oldGroups.Count == 0)
+            {
+                GroupData newGroup = new GroupData();
+                newGroup.GroupName = "test";
+                newGroup.GroupHeader = "test";
+                newGroup.GroupFooter = "test";
+                app.Groups.Create(newGroup);
+
+                oldGroups = GroupData.GetAll();
+            }
+            var group = oldGroups[0];
 
             List<AddressBookEntryData> oldList = group.GetContacts();
+
+            var contactsNotThisGroup = AddressBookEntryData.GetAll().Except(oldList).Count();
+            if (contactsNotThisGroup == 0)
+            {
+                var contactData = AddressBookEntryData.GetTestContact();
+
+                app.Contacts.Create(contactData);
+
+            }
 
             var contact = AddressBookEntryData.GetAll().Except(oldList).First();
 
