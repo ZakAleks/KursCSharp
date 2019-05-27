@@ -23,13 +23,17 @@ namespace MantisTests
             url = "http://localhost/mantisbt-2.21.0/login_page.php";
             ChromeOptions options = new ChromeOptions();
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
+            options.AddArguments("--start-maximized");
             driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(2);
 
             Registration = new RegistrationHelper(this);
             FtpHelper = new FtpHelper(this);
             James = new JamesHelper(this);
-
+            Mail = new MailHelper(this);
+            Proect = new ProectHelper(this);
+            Navigator = new NavigatorHelper(this);
+            Login = new LoginHelper(this);
         }
 
         ~ApplicationManager()
@@ -59,5 +63,9 @@ namespace MantisTests
         public RegistrationHelper Registration { get; private set; }
         public FtpHelper FtpHelper { get; private set; }
         public JamesHelper James { get; private set; }
+        public MailHelper Mail { get; private set; }
+        public ProectHelper Proect { get; private set; }
+        public NavigatorHelper Navigator { get; private set; }
+        public LoginHelper Login { get; private set; }
     }
 }

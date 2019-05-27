@@ -22,5 +22,18 @@ namespace MantisTests
             Password = password;
             Email = email;
         }
+
+        public static AccauntData GetAdminAccaunt()
+        {
+            AccauntData admin = new AccauntData()
+            {
+                Username = "administrator",
+                Password = "root",
+                Email = "testuser@localhost.localdomain"
+            };
+
+            return admin;
+        }
+
     }
 }

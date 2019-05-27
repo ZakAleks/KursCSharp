@@ -47,6 +47,7 @@ namespace MantisTests
 
             app.Registration.Register(accaunt);
 
+            app.James.Del(accaunt);
         }
     }
 }

@@ -43,5 +43,14 @@ namespace MantisTests
         public void OnOneTimeTearDown()
         {
         }
+
+        public static Random rnd = new Random();
+
+        public static string GetRandomNumber()
+        {
+            int l = rnd.Next(1, 100000);
+            return l.ToString();
+        }
+
     }
 }
