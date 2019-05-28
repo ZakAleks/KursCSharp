@@ -20,7 +20,7 @@ namespace MantisTests
 
         private ApplicationManager()
         {
-            url = "http://localhost/mantisbt-2.21.0/login_page.php";
+            url = "http://localhost/mantisbt-2.21.0/";
             ChromeOptions options = new ChromeOptions();
             options.SetLoggingPreference(LogType.Browser, LogLevel.All);
             options.AddArguments("--start-maximized");
@@ -34,6 +34,8 @@ namespace MantisTests
             Proect = new ProectHelper(this);
             Navigator = new NavigatorHelper(this);
             Login = new LoginHelper(this);
+            Admin = new AdminHelper(this, url);
+            API = new APIHelper(this);
         }
 
         ~ApplicationManager()
@@ -46,7 +48,7 @@ namespace MantisTests
             if (!app.IsValueCreated)
             {
                 ApplicationManager newInstance = new ApplicationManager();
-                newInstance.Driver.Url = "http://localhost/mantisbt-2.21.0/login_page.php";
+                newInstance.Driver.Url = newInstance.url + "/login_page.php";
                 app.Value = newInstance;
             }
             return app.Value;
@@ -67,5 +69,7 @@ namespace MantisTests
         public ProectHelper Proect { get; private set; }
         public NavigatorHelper Navigator { get; private set; }
         public LoginHelper Login { get; private set; }
+        public AdminHelper Admin { get; private set; }
+        public APIHelper API { get; private set; }
     }
 }

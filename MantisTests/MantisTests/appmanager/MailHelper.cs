@@ -29,6 +29,7 @@ namespace MantisTests
                     var message = pop3.GetMessage(1);
                     var body = message.Body;
                     pop3.DeleteMessage(1);
+                    pop3.LogOut();
                     return body;
                 }
                 Thread.Sleep(3000);

@@ -10,7 +10,6 @@ namespace MantisTests
     [TestFixture]
     public class AccauntCreationTest : BaseTest
     {
-
         [OneTimeSetUp]
         public void SetUpConfig()
         {
@@ -20,7 +19,6 @@ namespace MantisTests
             {
                 app.FtpHelper.Upload("/config_inc.php", localFile);
             }
-
         }
 
         [OneTimeTearDown]
@@ -38,6 +36,15 @@ namespace MantisTests
                 Password = "testpassvord",
                 Email = "testuser@localhost.localdomain"
             };
+
+            List<AccauntData> accaunts = app.Admin.GetAllAccaunt();
+
+            AccauntData existAccaunt = accaunts.Find(x => x.Username == accaunt.Username);
+
+            if (existAccaunt != null)
+            {
+                app.Admin.DeletAccaunt(existAccaunt);
+            }
 
             if (app.James.Verify(accaunt))
             {

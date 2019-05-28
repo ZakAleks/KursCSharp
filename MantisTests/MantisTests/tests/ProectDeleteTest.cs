@@ -10,32 +10,30 @@ namespace MantisTests
     [TestFixture]
     public class ProectDeleteTest : BaseTest
     {
-
         [Test]
         public void TestProectDelete()
         {
-
             var admin = AccauntData.GetAdminAccaunt();
 
             app.Login.Login(admin);
 
-            List<string> oldProjects = app.Proect.GetProjectList();
+            List<ProectData> oldProjects = app.API.GetProjectList(admin);
 
             if (oldProjects.Count == 0)
             {
                 var newProect = new ProectData();
                 newProect.ProectName = "Proect_" + DateTime.Now.ToString("yyyyMMddHHmmss");
 
-                app.Proect.CreateProject(newProect);
+                app.API.CreateProject(admin, newProect);
 
-                oldProjects = app.Proect.GetProjectList();
+                oldProjects = app.API.GetProjectList(admin);
             }
 
             var toBeRemoved = oldProjects[0];
 
-            app.Proect.Delete(toBeRemoved);
+            app.Proect.Delete(toBeRemoved.ProectName);
 
-            List<string> newProjects = app.Proect.GetProjectList();
+            List<ProectData> newProjects = app.API.GetProjectList(admin);
 
             Assert.AreEqual(oldProjects.Count - 1, newProjects.Count);
 
@@ -45,7 +43,6 @@ namespace MantisTests
             newProjects.Sort();
 
             Assert.AreEqual(oldProjects, newProjects);
-
         }
     }
 }
