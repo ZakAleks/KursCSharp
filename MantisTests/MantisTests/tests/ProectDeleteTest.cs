@@ -40,6 +40,10 @@ namespace MantisTests
             Assert.AreEqual(oldProjects.Count - 1, newProjects.Count);
 
             oldProjects.RemoveAt(0);
+
+            oldProjects.Sort();
+            newProjects.Sort();
+
             Assert.AreEqual(oldProjects, newProjects);
 
         }
